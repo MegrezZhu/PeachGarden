@@ -25,20 +25,21 @@ const result = [];
   );
   let count = 0;
   queue.on('error', (err, job) => {
-    if (err.message.match(/timeout/)) {
-      queue.push(job); // retry
-    } else throw err;
+    if (!err.message.match(/timeout/)) {
+      console.error(err);
+    }
+    queue.push(job); // retry
   });
   queue.on('complete', job => {
     console.log(`${job.id} checked. [${++count}/${GeneralNum}]`);
     if (count % 1000 === 0) {
-      fs.writeJson('./result/all.json', result.sort(), { spaces: 2 }); // save per stage
+      fs.writeJson('./result/all.json', result.sort((o1, o2) => o1.id > o2.id ? 1 : -1), { spaces: 2 }); // save per stage
     }
   });
 
   await queue.wait();
   console.log(`all done, ${result.length} in total`);
-  await fs.writeJson('./result/all.json', result.sort(), { spaces: 2 });
+  await fs.writeJson('./result/all.json', result.sort((o1, o2) => o1.id > o2.id ? 1 : -1), { spaces: 2 });
 })()
   .catch(console.error);
 
