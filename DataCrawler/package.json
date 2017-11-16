@@ -4,7 +4,9 @@
   "description": "Automatically fetch data from http://cd.e3ol.com",
   "main": "index.js",
   "scripts": {
-    "fetch": "node fetch.js"
+    "fetch": "node fetch.js",
+    "kingdom": "node kingdom.js",
+    "combine": "node combine.js"
   },
   "author": "Zhu Chu",
   "license": "ISC",

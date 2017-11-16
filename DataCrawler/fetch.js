@@ -9,7 +9,7 @@ const ax = require('axios').create({
 });
 const Queue = require('./queue');
 
-const GeneralNum = 10;
+const GeneralNum = 6163;
 const result = [];
 
 (async () => {
@@ -31,11 +31,14 @@ const result = [];
   });
   queue.on('complete', job => {
     console.log(`${job.id} checked. [${++count}/${GeneralNum}]`);
+    if (count % 1000 === 0) {
+      fs.writeJson('./result/all.json', result.sort(), { spaces: 2 }); // save per stage
+    }
   });
 
   await queue.wait();
   console.log(`all done, ${result.length} in total`);
-  await fs.writeJson('./result/all.json', result.sort().map(afterprocess), { spaces: 2 });
+  await fs.writeJson('./result/all.json', result.sort(), { spaces: 2 });
 })()
   .catch(console.error);
 
@@ -47,13 +50,14 @@ async function fetch (id) {
     id, ...extract($)
   };
   await getRate(info);
-  result.push(info);
+  result.push(afterprocess(info));
 }
 
 function isEmpty ($) {
   return $('.view_title .a2').text() === '资料空缺';
 }
 
+// exrtact basic infomations from e3ol website
 function extract ($) {
   let avatar = $('#view_div .pk_pic_off_l').attr('style');
   let matchRes = avatar.match(/url\((.+)\)/);
@@ -72,6 +76,7 @@ function extract ($) {
   };
 }
 
+// extract infomation from absctracts
 function afterprocess (item) {
   const gender = item.abstract.match(/[\u4e00-\u9fa5]+\W+男/) ? 1 : 0;
   let matched = item.abstract.match(/生卒（(.+) - (.+?)）/);
@@ -80,17 +85,16 @@ function afterprocess (item) {
 
   matched = item.abstract.match(/籍贯：([\u4e00-\u9fa5]+（[\u4e00-\u9fa5]+）?)/);
   const origin = matched ? matched[1] : null;
-  const kingdom = null; // not provided
   return {
     ...item,
     gender,
     from,
     to,
-    origin,
-    kingdom
+    origin
   };
 }
 
+// get relative count from baidu
 async function getRate (item) {
   const { name } = item;
 
