@@ -50,7 +50,7 @@ async function fetch (id) {
   const info = {
     id, ...extract($)
   };
-  await getRate(info);
+  // await getRate(info); // no longer used
   result.push(afterprocess(info));
 }
 
@@ -96,6 +96,7 @@ function afterprocess (item) {
 }
 
 // get relative count from baidu
+// no longer used
 async function getRate (item) {
   const { name } = item;
 
