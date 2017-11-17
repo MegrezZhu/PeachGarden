@@ -13,7 +13,6 @@ public class StartupActivity extends AppCompatActivity {
 
         // 在这里初始化数据库
         // 完成后跳去MainActivity
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -21,6 +20,7 @@ public class StartupActivity extends AppCompatActivity {
                 Intent intent = new Intent(StartupActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         }, 2000);
     }
