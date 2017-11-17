@@ -9,8 +9,9 @@
         <item name="android:fontFamily">@font/lantingkansong</item>
     </style>
 
-    <style name="AppTheme.fullscreen" parent="AppTheme">
+    <style name="AppTheme.splash" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@mipmap/splash</item>
     </style>
 
 </resources>
