@@ -2,6 +2,7 @@ package com.zyuco.peachgarden.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -13,6 +14,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DbHelper extends SQLiteOpenHelper {
@@ -50,7 +53,24 @@ public class DbHelper extends SQLiteOpenHelper {
         this.context = context;
     }
 
-    public void insertInitialData (SQLiteDatabase db) {
+    public List<Character> getAllCharacters() {
+        String select = "SELECT * FROM " + TABLE_CHARACTER;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(select, null);
+        List<Character> result = new ArrayList<>(cursor.getCount());
+
+        cursor.moveToFirst();
+        while (true) {
+            result.add(Character.fromCursor(cursor));
+            if (!cursor.moveToNext()) break;
+        }
+        cursor.close();
+
+        return result;
+    }
+
+    private void insertInitialData(SQLiteDatabase db) {
         Character[] data = readInitCharacters();
         db.beginTransaction();
         for (Character ch : data) {
@@ -60,7 +80,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.endTransaction();
     }
 
-    private Character[] readInitCharacters () {
+    private Character[] readInitCharacters() {
         try (InputStream stream = context.getResources().openRawResource(R.raw.characters)) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(stream, "UTF8"));
             Gson gson = new Gson();

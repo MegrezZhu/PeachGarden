@@ -1,6 +1,5 @@
 package com.zyuco.peachgarden;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
@@ -31,6 +30,7 @@ public class StartupActivity extends AppCompatActivity {
                 SQLiteDatabase db = helper.getWritableDatabase();
                 Log.i(TAG, "db init done");
                 db.close();
+
                 handler.obtainMessage().sendToTarget();
             }
         }).start();
