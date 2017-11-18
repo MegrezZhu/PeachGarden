@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -24,6 +25,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initList();
+        initListeners();
+    }
+
+    private void initListeners() {
+        findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "add button clicked");
+                // TODO: goto add page
+            }
+        });
+    }
+
+    private void initList() {
         DbHelper helper = new DbHelper(this);
         // TODO: load characters user have, instead of all
         List<Character> res = helper.getAllCharacters();
@@ -59,12 +75,5 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView list = findViewById(R.id.character_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
     }
 }
