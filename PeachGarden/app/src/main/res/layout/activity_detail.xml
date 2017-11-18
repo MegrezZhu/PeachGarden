@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zyuco.peachgarden.DetailActivity">
+
+
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/more"
+        app:layout_constraintBottom_toBottomOf="@id/appbar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/avatarBg"
+        android:layout_height="150dp"
+        android:layout_width="170dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/avatar_bg"
+        android:layout_marginTop="70dp"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="36dp"
+        android:src="@mipmap/avatar_test"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/avatarBg" />
+
+    <TextView
+        android:text="刘♂备"
+        android:id="@+id/name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatarBg"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="所属势力：蜀汉"
+        android:id="@+id/belong"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="籍贯：幽州涿郡涿（河北保定市涿州）"
+        android:id="@+id/origin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/belong"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="生卒：161年-223年"
+        android:id="@+id/live"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/origin"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/live"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/historyLabel"
+        android:layout_marginTop="40dp"
+        android:text="历史记载"
+        android:textSize="26sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\t\t\t\t刘备，蜀汉的开国皇帝，汉景帝之子中山靖王刘胜的后代。刘备少年孤贫，以贩鞋织草席为生。黄巾起义时，刘备与关羽、张飞桃园结义，成为异姓兄弟，一同剿除黄巾，有功，任安喜县尉，不久辞官。"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/historyLabel" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/detail_man_bg"
+        android:paddingTop="200dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</android.support.constraint.ConstraintLayout>

@@ -1,5 +1,24 @@
 package com.zyuco.peachgarden;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
+
+import com.zyuco.peachgarden.model.DbHelper;
+
+import java.util.List;<<<<<<< Updated upstream
+=======
+import android.content.Context;
+import android.content.Intent;
+>>>>>>> Stashed changes
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -67,11 +86,85 @@ public class MainActivity extends AppCompatActivity {
         };
 
         adapter.setOnItemClickListemer(new CommonAdapter.OnItemClickListener<Character>() {
-            @Override
-            public void onClick(int position, Character data) {
-                Log.i(TAG, String.format("Item clicked: %s", data.name));
-                // TODO: goto detail page
-            }
+                                           @Override
+                                           public void onClick(int position, Character data) {
+                                               Log.i(TAG, String.format("Item clicked: %s", data.name));
+                                               // TODO: goto detail page
+                                           }
+                                       }
+
+        RecyclerView list = (RecyclerView)findViewById(R.id.character_list);
+        list.setLayoutManager(new LinearLayoutManager(this));
+        list.setAdapter(adapter);
+    }
+}
+
+abstract class CommonAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
+    private Context mContext;
+    private int mLayoutId;
+    private List<T> mDatas;
+    private OnItemClickListener mOnItemClickListener;
+
+    public CommonAdapter(Context context, int layoutId, List<T> datas) {
+        mContext = context;
+        mLayoutId = layoutId;
+        mDatas = datas;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return ViewHolder.get(mContext, parent, mLayoutId);
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        convert(holder, mDatas.get(position));
+
+        if (mOnItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickListener.onClick(holder.getAdapterPosition());
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    mOnItemClickListener.onLongClick(holder.getAdapterPosition());
+                    return true;
+                }
+            });
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return mDatas.size();
+    }
+
+    public abstract void convert(ViewHolder holder, T data);
+
+    public void setOnItemClickListemer(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
+
+    interface OnItemClickListener {
+        void onClick(int position);
+
+        void onLongClick(int position);
+    }
+}
+
+class ViewHolder extends RecyclerView.ViewHolder {
+    private SparseArray<View> cachedViews;
+    private View mConvertView;
+
+    public ViewHolder(Context context, View itemView, ViewGroup parent) {
+        super(itemView);
+        mConvertView = itemView;
+        cachedViews = new SparseArray<>();
+    }
+>>>>>>> Stashed changes
 
             @Override
             public void onLongClick(int position, Character data) {
