@@ -24,23 +24,10 @@ public class DbHelper extends SQLiteOpenHelper {
     // table name
     private static final String TABLE_CHARACTER = "characters";
 
-    // column names
-    private static final String CHARACTER_NAME = "name";
-    private static final String CHARACTER_PINYIN = "pinyin";
-    private static final String CHARACTER_AVATAR = "avatar";
-    private static final String CHARACTER_ABSTRACT = "abstract";
-    private static final String CHARACTER_DESCRIPTION = "description";
-    private static final String CHARACTER_GENDER = "gender";
-    private static final String CHARACTER_FROM = "live_from";
-    private static final String CHARACTER_TO = "live_to";
-    private static final String CHARACTER_ORIGIN = "origin";
-    private static final String CHARACTER_BELONG = "belong";
-    private static final String CHARACTER_BELONG_ID = "belong_id";
-
     // create tables
     private static final String CREATE_TABLE_CHARACTERS = "" +
         "CREATE TABLE IF NOT EXISTS " + TABLE_CHARACTER +
-        " ( " + CHARACTER_NAME + " TEXT, " + CHARACTER_PINYIN + " TEXT, " + CHARACTER_AVATAR + " TEXT, " + CHARACTER_ABSTRACT + " TEXT, " + CHARACTER_DESCRIPTION + " TEXT, " + CHARACTER_GENDER + " INT, " + CHARACTER_FROM + " INT, " + CHARACTER_TO + " INT, " + CHARACTER_ORIGIN + " TEXT, " + CHARACTER_BELONG + " TEXT, " + CHARACTER_BELONG_ID + " INT );";
+        " ( " + Character.COL_NAME + " TEXT, " + Character.COL_PINYIN + " TEXT, " + Character.COL_AVATAR + " TEXT, " + Character.COL_ABSTRACT + " TEXT, " + Character.COL_DESCRIPTION + " TEXT, " + Character.COL_GENDER + " INT, " + Character.COL_FROM + " INT, " + Character.COL_TO + " INT, " + Character.COL_ORIGIN + " TEXT, " + Character.COL_BELONG + " TEXT, " + Character.COL_BELONG_ID + " INT );";
 
     private Context context;
 
@@ -67,8 +54,7 @@ public class DbHelper extends SQLiteOpenHelper {
         Character[] data = readInitCharacters();
         db.beginTransaction();
         for (Character ch : data) {
-            ContentValues value = convertCharacter(ch);
-            db.insert(TABLE_CHARACTER, null, value);
+            db.insert(TABLE_CHARACTER, null, ch.toContentValues());
         }
         db.setTransactionSuccessful();
         db.endTransaction();
@@ -84,22 +70,4 @@ public class DbHelper extends SQLiteOpenHelper {
             return new Character[]{};
         }
     }
-
-    ContentValues convertCharacter(Character ch) {
-        ContentValues values = new ContentValues();
-        values.put(CHARACTER_NAME, ch.name);
-        values.put(CHARACTER_PINYIN, ch.pinyin);
-        values.put(CHARACTER_AVATAR, ch.avatar);
-        values.put(CHARACTER_ABSTRACT, ch.abstractDescription);
-        values.put(CHARACTER_DESCRIPTION, ch.description);
-        values.put(CHARACTER_GENDER, ch.gender);
-        values.put(CHARACTER_FROM, ch.from);
-        values.put(CHARACTER_TO, ch.to);
-        values.put(CHARACTER_ORIGIN, ch.origin);
-        values.put(CHARACTER_BELONG, ch.belong);
-        values.put(CHARACTER_BELONG_ID, ch.belongId);
-
-        return values;
-    }
-
 }

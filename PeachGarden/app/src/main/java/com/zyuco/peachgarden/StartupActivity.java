@@ -23,7 +23,7 @@ public class StartupActivity extends AppCompatActivity {
         // 在这里初始化数据库
         // 完成后跳去MainActivity
         final Handler handler = new CounterHandler(this);
-        deleteDatabase(DbHelper.DB_NAME);
+//        deleteDatabase(DbHelper.DB_NAME);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -40,7 +40,7 @@ public class StartupActivity extends AppCompatActivity {
             public void run() {
                 handler.obtainMessage().sendToTarget();
             }
-        }, 1000);
+        }, 500);
     }
 
     private static class CounterHandler extends Handler {
