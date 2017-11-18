@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">桃园</string>
     <string name="app_subtitle">武将百科</string>
+    <string name="search_hint">查询</string>
+    <string name="character_card_belong">所属：</string>
     <string name="startup_poem_1">滚滚长江东逝水</string>
     <string name="startup_poem_2">浪花淘尽英雄</string>
     <string name="startup_poem_3">是非成败转头空</string>
