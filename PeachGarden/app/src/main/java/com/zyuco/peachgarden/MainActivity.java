@@ -1,5 +1,6 @@
 package com.zyuco.peachgarden;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,9 +49,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        DbHelper helper = new DbHelper(this);
+        DbHelper helper = DbHelper.getInstance(this);
         // TODO: load characters user have, instead of all
-        List<Character> res = helper.getAllCharacters();
+        SQLiteDatabase db = helper.getReadableDatabase();
+        List<Character> res = helper.getAllOwnedCharacters(db);
 
         final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
             @Override

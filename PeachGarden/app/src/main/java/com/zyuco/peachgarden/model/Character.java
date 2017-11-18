@@ -21,7 +21,7 @@ public class Character implements Serializable, BaseColumns {
     public static final String COL_BELONG = "belong";
     public static final String COL_BELONG_ID = "belong_id";
 
-    public int _id = -1;
+    public long _id = -1;
     public String name;
     public String pinyin;
     public String avatar;
@@ -38,7 +38,7 @@ public class Character implements Serializable, BaseColumns {
 
     public static Character fromCursor(Cursor cursor) {
         Character ch = new Character();
-        ch._id = cursor.getInt(cursor.getColumnIndex(_ID));
+        ch._id = cursor.getLong(cursor.getColumnIndex(_ID));
         ch.name = cursor.getString(cursor.getColumnIndex(COL_NAME));
         ch.pinyin = cursor.getString(cursor.getColumnIndex(COL_PINYIN));
         ch.avatar = cursor.getString(cursor.getColumnIndex(COL_AVATAR));

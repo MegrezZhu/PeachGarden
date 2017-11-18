@@ -27,7 +27,7 @@ public class StartupActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Log.i(TAG, "db init start");
-                DbHelper helper = new DbHelper(StartupActivity.this);
+                DbHelper helper = DbHelper.getInstance(StartupActivity.this);
                 SQLiteDatabase db = helper.getWritableDatabase();
                 Log.i(TAG, "db init done");
                 db.close();
