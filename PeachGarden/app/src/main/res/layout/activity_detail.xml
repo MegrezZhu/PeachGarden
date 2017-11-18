@@ -9,6 +9,7 @@
 
     <ImageButton
         style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/more"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:scaleType="fitXY"
