@@ -1,6 +1,5 @@
 package com.zyuco.peachgarden.model;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,7 +32,6 @@ public class DbHelper extends SQLiteOpenHelper {
         " ( " + Character.COL_NAME + " TEXT, " + Character.COL_PINYIN + " TEXT, " + Character.COL_AVATAR + " TEXT, " + Character.COL_ABSTRACT + " TEXT, " + Character.COL_DESCRIPTION + " TEXT, " + Character.COL_GENDER + " INT, " + Character.COL_FROM + " INT, " + Character.COL_TO + " INT, " + Character.COL_ORIGIN + " TEXT, " + Character.COL_BELONG + " TEXT, " + Character.COL_BELONG_ID + " INT );";
 
     private Context context;
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
