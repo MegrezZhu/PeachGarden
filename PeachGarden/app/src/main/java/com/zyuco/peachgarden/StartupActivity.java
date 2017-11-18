@@ -1,14 +1,14 @@
 package com.zyuco.peachgarden;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.zyuco.peachgarden.model.DbHelper;
+import com.zyuco.peachgarden.library.DbReader;
+import com.zyuco.peachgarden.library.DbWriter;
 
 import java.lang.ref.WeakReference;
 
@@ -22,15 +22,13 @@ public class StartupActivity extends AppCompatActivity {
         // 在这里初始化数据库
         // 完成后跳去MainActivity
         final Handler handler = new CounterHandler(this);
-//        deleteDatabase(DbHelper.DB_NAME);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Log.i(TAG, "db init start");
-                DbHelper helper = DbHelper.getInstance(StartupActivity.this);
-                SQLiteDatabase db = helper.getWritableDatabase();
+                DbReader.getInstance(StartupActivity.this); // trigger db initialization
+                DbWriter.getInstance(StartupActivity.this);
                 Log.i(TAG, "db init done");
-                db.close();
 
                 handler.obtainMessage().sendToTarget();
             }

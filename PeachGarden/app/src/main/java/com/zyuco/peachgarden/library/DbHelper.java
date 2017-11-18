@@ -1,27 +1,25 @@
-package com.zyuco.peachgarden.model;
+package com.zyuco.peachgarden.library;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.zyuco.peachgarden.R;
+import com.zyuco.peachgarden.model.Character;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 
-public class DbHelper extends SQLiteOpenHelper {
+class DbHelper extends SQLiteOpenHelper {
     private static DbHelper instance;
 
     private static final String TAG = "PeachGarden.DbHelper";
@@ -30,8 +28,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "PeachGarden.db";
 
     // table name
-    private static final String TABLE_CHARACTER = "characters";
-    private static final String TABLE_OWN = "own";
+    static final String TABLE_CHARACTER = "characters";
+    static final String TABLE_OWN = "own";
 
     // create tables
     private static final String CREATE_TABLE_CHARACTERS = "" +
@@ -44,14 +42,6 @@ public class DbHelper extends SQLiteOpenHelper {
         "   character_id INTEGER," +
         "   FOREIGN KEY(character_id) REFERENCES " + TABLE_CHARACTER + "(" + Character._ID + ")" +
         ");";
-
-    // select data
-    private static final String SELECT_ALL_CHARACTERS = "SELECT * FROM " + TABLE_CHARACTER;
-    private static final String SELECT_ALL_OWNED_CHARACTERS = "" +
-        "SELECT * " +
-        "FROM " + TABLE_CHARACTER + " as c, " + TABLE_OWN + " as o " +
-        "WHERE o.character_id = c._id;";
-
 
     private static final int INIT_OWN_SIZE = 10;
 
@@ -80,38 +70,6 @@ public class DbHelper extends SQLiteOpenHelper {
         this.context = context;
     }
 
-    public List<Character> getAllCharacters(SQLiteDatabase db) {
-        Cursor cursor = db.rawQuery(SELECT_ALL_CHARACTERS, null);
-        List<Character> res = getAllCharactersByCursor(cursor);
-        cursor.close();
-        return res;
-    }
-
-    public List<Character> getAllOwnedCharacters(SQLiteDatabase db) {
-        Cursor cursor = db.rawQuery(SELECT_ALL_OWNED_CHARACTERS, null);
-        List<Character> res = getAllCharactersByCursor(cursor);
-        cursor.close();
-        return res;
-    }
-
-    private List<Character> getAllCharactersByCursor(Cursor cursor) {
-        List<Character> result = new ArrayList<>(cursor.getCount());
-        cursor.moveToFirst();
-        while (true) {
-            result.add(Character.fromCursor(cursor));
-            if (!cursor.moveToNext()) break;
-        }
-        return result;
-    }
-
-    public boolean insertOwn(SQLiteDatabase db, long characterId) {
-        ContentValues values = new ContentValues();
-        values.put("character_id", characterId);
-        db.insert(TABLE_OWN, null, values);
-        // TODO success check
-        return true;
-    }
-
     private void insertInitialData(SQLiteDatabase db, Character[] data) {
         db.beginTransaction();
         for (Character ch : data) {
@@ -130,7 +88,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.beginTransaction();
         for (Character ch : gen) {
-            insertOwn(db, ch._id);
+            ContentValues values = new ContentValues();
+            values.put("character_id", ch._id);
+            db.insert(TABLE_OWN, null, values);
         }
         db.setTransactionSuccessful();
         db.endTransaction();

@@ -1,21 +1,19 @@
 package com.zyuco.peachgarden;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.zyuco.peachgarden.library.CommonAdapter;
+import com.zyuco.peachgarden.library.DbReader;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
-import com.zyuco.peachgarden.model.DbHelper;
-import com.zyuco.peachgarden.library.CommonAdapter;
 
 import java.util.List;
 
@@ -49,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        DbHelper helper = DbHelper.getInstance(this);
         // TODO: load characters user have, instead of all
-        SQLiteDatabase db = helper.getReadableDatabase();
-        List<Character> res = helper.getAllOwnedCharacters(db);
+        List<Character> res = DbReader.getInstance(this).getAllOwnedCharacters();
 
         final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
             @Override
