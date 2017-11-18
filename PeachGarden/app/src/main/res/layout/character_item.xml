@@ -72,8 +72,7 @@
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="3"
-        android:text="劉備  男  史实人物  字：玄德  生卒（161 - 223）  籍贯：幽州涿郡涿（河北保定市涿州）
-"
+        android:text="描述"
         android:textColor="#000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/border"
