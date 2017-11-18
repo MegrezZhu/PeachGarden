@@ -29,13 +29,13 @@ public class DbHelper extends SQLiteOpenHelper {
     // create tables
     private static final String CREATE_TABLE_CHARACTERS = "" +
         "CREATE TABLE IF NOT EXISTS " + TABLE_CHARACTER +
-        " ( " + Character.COL_NAME + " TEXT, " + Character.COL_PINYIN + " TEXT, " + Character.COL_AVATAR + " TEXT, " + Character.COL_ABSTRACT + " TEXT, " + Character.COL_DESCRIPTION + " TEXT, " + Character.COL_GENDER + " INT, " + Character.COL_FROM + " INT, " + Character.COL_TO + " INT, " + Character.COL_ORIGIN + " TEXT, " + Character.COL_BELONG + " TEXT, " + Character.COL_BELONG_ID + " INT );";
+        " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " + Character.COL_NAME + " TEXT, " + Character.COL_PINYIN + " TEXT, " + Character.COL_AVATAR + " TEXT, " + Character.COL_ABSTRACT + " TEXT, " + Character.COL_DESCRIPTION + " TEXT, " + Character.COL_GENDER + " INT, " + Character.COL_FROM + " INT, " + Character.COL_TO + " INT, " + Character.COL_ORIGIN + " TEXT, " + Character.COL_BELONG + " TEXT, " + Character.COL_BELONG_ID + " INT );";
 
     private Context context;
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.i(TAG, "onCreate");
+        Log.i(TAG, "db created");
         db.execSQL(CREATE_TABLE_CHARACTERS);
         insertInitialData(db);
     }

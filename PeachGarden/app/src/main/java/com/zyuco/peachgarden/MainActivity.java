@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         // TODO: load characters user have, instead of all
         List<Character> res = helper.getAllCharacters();
 
-        Log.i(TAG, String.format("get %d items", res.size()));
-
         final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
             @Override
             public void convert(ViewHolder holder, Character data) {
