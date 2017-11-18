@@ -33,18 +33,18 @@ public class DetailActivity extends AppCompatActivity {
                         if (menuItem.getItemId() == R.id.remove) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
                             builder.setTitle("注意！").setMessage("确定要删除么?")
-                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                        }
-                                    })
-                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            // TODO 删除数据，回到主页面，toast已删除
-                                        }
-                                    }).create().show();
+                                    }
+                                })
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        // TODO 删除数据，回到主页面，toast已删除
+                                    }
+                                }).create().show();
 
                         } else if (menuItem.getItemId() == R.id.edit) {
                             // TODO 去修改页

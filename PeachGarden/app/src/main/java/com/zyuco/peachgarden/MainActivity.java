@@ -12,9 +12,9 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.zyuco.peachgarden.library.CommonAdapter;
+import com.zyuco.peachgarden.library.DbReader;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
-import com.zyuco.peachgarden.model.DbHelper;
 
 import java.util.List;
 
@@ -48,11 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        DbHelper helper = new DbHelper(this);
         // TODO: load characters user have, instead of all
-        List<Character> res = helper.getAllCharacters();
-
-        Log.i(TAG, String.format("get %d items", res.size()));
+        List<Character> res = DbReader.getInstance(this).getAllOwnedCharacters();
 
         final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
             @Override
@@ -67,24 +64,23 @@ public class MainActivity extends AppCompatActivity {
         };
 
         adapter.setOnItemClickListemer(new CommonAdapter.OnItemClickListener<Character>() {
-           @Override
-           public void onClick(int position, Character data) {
-               Log.i(TAG, String.format("Item clicked: %s", data.name));
-               // TODO: goto detail page
-               Intent intent = new Intent();
-               intent.setClass(MainActivity.this, DetailActivity.class);
-               startActivity(intent);
-           }
+            @Override
+            public void onClick(int position, Character data) {
+                Log.i(TAG, String.format("Item clicked: %s", data.name));
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, DetailActivity.class);
+                startActivity(intent);
+            }
 
             @Override
             public void onLongClick(int position, Character data) {
                 Log.i(TAG, String.format("Item long-clicked: %s", data.name));
                 // TODO: do... whatever
             }
-           });
+        });
 
 
-        RecyclerView list = (RecyclerView)findViewById(R.id.character_list);
+        RecyclerView list = (RecyclerView) findViewById(R.id.character_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
     }
