@@ -1,21 +1,18 @@
 package com.zyuco.peachgarden;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.SparseArray;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 import com.zyuco.peachgarden.model.DbHelper;
+import com.zyuco.peachgarden.library.CommonAdapter;
 
 import java.util.List;
 
@@ -69,88 +66,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return super.dispatchTouchEvent(ev);
-    }
-}
-
-abstract class CommonAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
-    private Context mContext;
-    private int mLayoutId;
-    private List<T> mData;
-    private OnItemClickListener<T> mOnItemClickListener;
-
-    public CommonAdapter(Context context, int layoutId, List<T> data) {
-        mContext = context;
-        mLayoutId = layoutId;
-        mData = data;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return ViewHolder.get(mContext, parent, mLayoutId);
-    }
-
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        convert(holder, mData.get(position));
-
-        if (mOnItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int pos = holder.getAdapterPosition();
-                    mOnItemClickListener.onClick(pos, mData.get(pos));
-                }
-            });
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    int pos = holder.getAdapterPosition();
-                    mOnItemClickListener.onLongClick(pos, mData.get(pos));
-                    return true;
-                }
-            });
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return mData.size();
-    }
-
-    public abstract void convert(ViewHolder holder, T data);
-
-    public void setOnItemClickListemer(OnItemClickListener listener) {
-        mOnItemClickListener = listener;
-    }
-
-    interface OnItemClickListener<T> {
-        void onClick(int position, T data);
-
-        void onLongClick(int position, T data);
-    }
-}
-
-class ViewHolder extends RecyclerView.ViewHolder {
-    private SparseArray<View> cachedViews;
-    private View mConvertView;
-
-    public ViewHolder(Context context, View itemView, ViewGroup parent) {
-        super(itemView);
-        mConvertView = itemView;
-        cachedViews = new SparseArray<>();
-    }
-
-    public static ViewHolder get(Context context, ViewGroup parent, int layoutId) {
-        View itemView = LayoutInflater.from(context).inflate(layoutId, parent, false);
-        return new ViewHolder(context, itemView, parent);
-    }
-
-    public <T extends View> T getView(int viewId) {
-        View view = cachedViews.get(viewId);
-        if (view == null) {
-            view = mConvertView.findViewById(viewId);
-            cachedViews.put(viewId, view);
-        }
-        return (T) view;
     }
 }
