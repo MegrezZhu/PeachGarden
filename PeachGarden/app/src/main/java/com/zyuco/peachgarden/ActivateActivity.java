@@ -1,21 +1,31 @@
 package com.zyuco.peachgarden;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 public class ActivateActivity extends AppCompatActivity {
-    private int activateCount = 3;
+    private int activateCount;
+    private int currentCount;
     private TextView activateCountView;
     private ActivateActivity context = this;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activate);
+        initData();
         initListener();
+    }
+
+    private void initData() {
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+        activateCount = sharedPref.getInt(getString(R.string.saved_activate_count), 2);
     }
 
     private void initListener() {
@@ -24,10 +34,15 @@ public class ActivateActivity extends AppCompatActivity {
         findViewById(R.id.btn_activate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (activateCount > 1) {
-                    String str = number2String(--activateCount);
+                if (activateCount - currentCount > 0) {
+                    currentCount++;
+                    String str = number2String(activateCount - currentCount);
                     activateCountView.setText(str);
                 } else {
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    activateCount *= 2;
+                    editor.putInt(getString(R.string.saved_activate_count), activateCount);
+                    editor.apply();
                     startActivity(new Intent(context, ActivatedActivity.class));
                     context.finish();
                     context.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -37,6 +52,7 @@ public class ActivateActivity extends AppCompatActivity {
     }
 
     private String number2String(int num) {
+        if (num == 0) return "激活";
         String[] NUMBER_TABLE = {"零", "壹","贰","叁","肆","伍","陆","柒","捌","玖"};
         String[] UNIT_TABLE = {"", "拾", "佰", "仟", "万"};
         String numberString = new StringBuffer(String.valueOf(num)).reverse().toString().trim();

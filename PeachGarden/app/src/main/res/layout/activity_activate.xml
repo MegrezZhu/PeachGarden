@@ -31,7 +31,6 @@
 
     <TextView
         android:id="@+id/tv_activate_count"
-        android:text="@string/hundred"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="55sp"
