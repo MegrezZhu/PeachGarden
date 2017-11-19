@@ -22,14 +22,15 @@ import com.zyuco.peachgarden.library.DbWriter;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 
-import java.util.HashMap;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "PeachGarden.Main";
 
     public static final String NOTIFY_ITEM_DELETION = "com.zyuco.peachgarden.MainActivity.notifyItemDeletion";
+    public static final String NOTIFY_ITEMS_ADDITION = "com.zyuco.peachgarden.MainActivity.notifyItemsAddition";
 
     private List<Character> list;
     private CommonAdapter<Character> adapter;
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
     private void registBroadcastReceivers() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(NOTIFY_ITEM_DELETION);
+        filter.addAction(NOTIFY_ITEMS_ADDITION);
         Receiver receiver = new Receiver();
         registerReceiver(receiver, filter);
     }
@@ -147,26 +149,40 @@ public class MainActivity extends AppCompatActivity {
             switch (intent.getAction()) {
                 case NOTIFY_ITEM_DELETION:
                     Character ch = (Character) intent.getSerializableExtra("character");
-                    notifyAdapter(ch);
-                    syncDatabase(ch);
+                    deleteCharacter(ch);
+                    break;
+                case NOTIFY_ITEMS_ADDITION:
+                    List<Character> list = (ArrayList<Character>)intent.getSerializableExtra("characters");
+                    addCharacters(list);
+                    break;
             }
         }
 
-        private void notifyAdapter(Character ch) {
+        private void deleteCharacter(Character ch) {
+            final Character character = ch;
             for (Character _ch : list) {
-                if (_ch._id == ch._id) {
+                if (_ch._id == character._id) {
                     list.remove(_ch); // stupid... but enough!
                     break;
                 }
             }
             adapter.notifyDataSetChanged();
-        }
-
-        private void syncDatabase(final Character ch) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    DbWriter.getInstance(MainActivity.this).deleteOwnedCharacter(ch);
+                    DbWriter.getInstance(MainActivity.this).deleteOwnedCharacter(character);
+                }
+            }).start();
+        }
+
+        private void addCharacters(List<Character> characters) {
+            final List<Character> characterList = characters;
+            list.addAll(characterList);
+            adapter.notifyDataSetChanged();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    DbWriter.getInstance(MainActivity.this).addCharacters2Own(characterList);
                 }
             }).start();
         }

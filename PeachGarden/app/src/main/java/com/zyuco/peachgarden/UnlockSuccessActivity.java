@@ -5,14 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.zyuco.peachgarden.library.CommonAdapter;
 import com.zyuco.peachgarden.library.DbReader;
+import com.zyuco.peachgarden.library.DbWriter;
+import com.zyuco.peachgarden.library.Tools;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UnlockSuccessActivity extends AppCompatActivity {
@@ -25,7 +27,15 @@ public class UnlockSuccessActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        List<Character> res = DbReader.getInstance(this).getAllOwnedCharacters();
+        List<Character> res = DbReader.getInstance(this).getRandomCharacters(Tools.random(1, 10));
+
+        Intent broadcast = new Intent(MainActivity.NOTIFY_ITEMS_ADDITION);
+        broadcast.putExtra("characters", (ArrayList<Character>)res);
+        sendBroadcast(broadcast);
+        ((TextView)findViewById(R.id.tv_new_unlock)).setText(getString(R.string.new_unlock).replace("${n}", String.valueOf(res.size())));
+
+
+
         final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
             @Override
             public void convert(ViewHolder holder, Character data) {
