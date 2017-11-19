@@ -1,6 +1,9 @@
 package com.zyuco.peachgarden;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +18,21 @@ import android.widget.TextView;
 
 import com.zyuco.peachgarden.library.CommonAdapter;
 import com.zyuco.peachgarden.library.DbReader;
+import com.zyuco.peachgarden.library.DbWriter;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "PeachGarden.Main";
+
+    public static final String NOTIFY_ITEM_DELETION = "com.zyuco.peachgarden.MainActivity.notifyItemDeletion";
+
+    private List<Character> list;
+    private CommonAdapter<Character> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         initList();
         initListeners();
         setStatusBarColor();
+        registBroadcastReceivers();
     }
 
     private void setStatusBarColor() {
@@ -59,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.main_page).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick: main page");
                 startActivity(MainActivity.class);
             }
         });
@@ -72,9 +83,16 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.unlock_page).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO goto unlock page
+                startActivity(UnlockActivity.class);
             }
         });
+    }
+
+    private void registBroadcastReceivers() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(NOTIFY_ITEM_DELETION);
+        Receiver receiver = new Receiver();
+        registerReceiver(receiver, filter);
     }
 
     private void startActivity(Class<?> cls) {
@@ -83,10 +101,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        // TODO: load characters user have, instead of all
-        List<Character> res = DbReader.getInstance(this).getAllOwnedCharacters();
+        list = DbReader.getInstance(this).getAllOwnedCharacters();
 
-        final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
+        adapter = new CommonAdapter<Character>(this, R.layout.character_item, list) {
             @Override
             public void convert(ViewHolder holder, Character data) {
                 TextView name = holder.getView(R.id.name);
@@ -116,8 +133,42 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        RecyclerView list = (RecyclerView) findViewById(R.id.character_list);
+        RecyclerView list = findViewById(R.id.character_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
+    }
+
+    public class Receiver extends BroadcastReceiver {
+        private static final String TAG = "PeachGarden.Main_Recv";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "onReceive: ");
+            switch (intent.getAction()) {
+                case NOTIFY_ITEM_DELETION:
+                    Character ch = (Character) intent.getSerializableExtra("character");
+                    notifyAdapter(ch);
+                    syncDatabase(ch);
+            }
+        }
+
+        private void notifyAdapter(Character ch) {
+            for (Character _ch : list) {
+                if (_ch._id == ch._id) {
+                    list.remove(_ch); // stupid... but enough!
+                    break;
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
+
+        private void syncDatabase(final Character ch) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    DbWriter.getInstance(MainActivity.this).deleteOwnedCharacter(ch);
+                }
+            }).start();
+        }
     }
 }

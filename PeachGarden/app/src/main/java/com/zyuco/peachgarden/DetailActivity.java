@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.zyuco.peachgarden.library.Tools;
@@ -26,7 +27,9 @@ public class DetailActivity extends AppCompatActivity {
     private TextView live;
     private TextView description;
     private TextView _abstract;
-    Character data;
+
+    private Character data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +88,8 @@ public class DetailActivity extends AppCompatActivity {
         new Tools.LoadImagesTask(avatar).execute(data.avatar);
 
         // 背景
-        ImageView bg = (ImageView) findViewById(R.id.detail_bg);
-        bg.setImageResource(data.gender == 1 ? R.mipmap.detail_man_bg : R.mipmap.detail_woman_bg);
+        ScrollView scrollView = findViewById(R.id.detail_scroll_view);
+        scrollView.setBackgroundResource(data.gender == 1 ? R.mipmap.detail_man_bg : R.mipmap.detail_woman_bg);
     }
 
     private void setStatusBarColor() {
@@ -112,13 +115,17 @@ public class DetailActivity extends AppCompatActivity {
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                                        // Do nothing
                                     }
                                 })
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         // TODO 删除数据，回到主页面，toast已删除
+                                        Intent broadcast = new Intent(MainActivity.NOTIFY_ITEM_DELETION);
+                                        broadcast.putExtra("character", data);
+                                        DetailActivity.this.sendBroadcast(broadcast);
+                                        DetailActivity.this.finish();
                                     }
                                 }).create().show();
 

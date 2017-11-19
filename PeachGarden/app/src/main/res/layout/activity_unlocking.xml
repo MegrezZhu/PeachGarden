@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zyuco.peachgarden.UnlockingActivity">
+
+    <ImageView
+        android:src="@mipmap/unlocking_background"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/unlocking_poem_1"
+        android:text="@string/unlocking_poem_1"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/unlocking_poem_2"
+        android:text="@string/unlocking_poem_2"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/unlocking_poem_1"
+        app:layout_constraintRight_toLeftOf="@id/unlocking_poem_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/unlocking_poem_3"
+        android:text="@string/unlocking_poem_3"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/unlocking_poem_1"
+        app:layout_constraintRight_toLeftOf="@id/unlocking_poem_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/unlocking_poem_4"
+        android:text="@string/unlocking_poem_4"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="@id/unlocking_poem_1"
+        app:layout_constraintRight_toLeftOf="@id/unlocking_poem_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_unlocking"
+        android:text="@string/unlocking"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</android.support.constraint.ConstraintLayout>
