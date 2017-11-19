@@ -22,9 +22,7 @@ import com.zyuco.peachgarden.library.DbWriter;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "PeachGarden.Main";
@@ -84,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(UnlockActivity.class);
+            }
+        });
+        findViewById(R.id.about_page).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(AboutActivity.class);
             }
         });
     }
