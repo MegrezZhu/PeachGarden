@@ -15,9 +15,9 @@
     <string name="activate_rule">你可以选择以下方式解锁更多词条：\n1.点击旋涡达指定次数\n2.点击下方按钮支付</string>
     <string name="saved_unlock_count">saved_unlock_count</string>
     <string name="unlocking">——正在解锁——</string>
-    <string name="unlocking_poem_1">王濬楼船下益州　金陵王气黯然收</string>
-    <string name="unlocking_poem_2">千寻铁锁沉江底　一片降幡出石头</string>
-    <string name="unlocking_poem_3">人世几回伤往事　山形依旧枕寒流</string>
-    <string name="unlocking_poem_4">今逢四海为家日　故垒萧萧芦荻秋</string>
+    <string name="unlocking_poem_1">王濬楼船下益州，金陵王气黯然收</string>
+    <string name="unlocking_poem_2">千寻铁锁沉江底，一片降幡出石头</string>
+    <string name="unlocking_poem_3">人世几回伤往事，山形依旧枕寒流</string>
+    <string name="unlocking_poem_4">今逢四海为家日，故垒萧萧芦荻秋</string>
     <string name="new_unlock">解锁了新的词条：</string>
 </resources>

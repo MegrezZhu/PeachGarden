@@ -43,4 +43,26 @@ public class Tools {
             imageView.setImageBitmap(bitmap);
         }
     }
+    public static int random(int lower, int upper) {
+        return (int) (Math.random() * (upper - lower)) + lower;
+    }
+    public static String num2String(int number) {
+        if (number == 0) return "解锁";
+        String[] NUMBER_TABLE = {"零", "壹","贰","叁","肆","伍","陆","柒","捌","玖"};
+        String[] UNIT_TABLE = {"", "拾", "佰", "仟", "万"};
+        String numberString = new StringBuffer(String.valueOf(number)).reverse().toString().trim();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < numberString.length(); i++) {
+            builder.append(UNIT_TABLE[i]);
+            builder.append(NUMBER_TABLE[numberString.charAt(i) - 48]);
+        }
+        builder.reverse();
+        String result = builder.toString();
+        result = result.replaceAll("零[拾佰仟]", "零");
+        result = result.replaceAll("零万", "万");
+        while (result.charAt(result.length() - 1) == '零') {
+            result = result.substring(0, result.length() - 1);
+        }
+        return result;
+    }
 }
