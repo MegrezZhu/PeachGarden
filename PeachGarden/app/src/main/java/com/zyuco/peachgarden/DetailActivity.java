@@ -37,16 +37,16 @@ public class DetailActivity extends AppCompatActivity {
 
     protected void render() {
         Character data = (Character) getIntent().getSerializableExtra("character");
-        avatar = (ImageView) findViewById(R.id.detail_avatar);
-        name = (TextView) findViewById(R.id.detail_name);
-        belong = (TextView) findViewById(R.id.detail_belong);
-        origin = (TextView) findViewById(R.id.detail_origin);
-        live = (TextView) findViewById(R.id.detail_live);
-        description = (TextView) findViewById(R.id.detail_desription);
+        avatar = findViewById(R.id.detail_avatar);
+        name = findViewById(R.id.detail_name);
+        belong = findViewById(R.id.detail_belong);
+        origin = findViewById(R.id.detail_origin);
+        live = findViewById(R.id.detail_live);
+        description = findViewById(R.id.detail_desription);
         // 名字
         StringBuilder text = new StringBuilder();
         for (int i = 0; i < data.name.length(); i++) {
-            if (i != 0 && i != data.name.length() - 1) {
+            if (i != 0) {
                 text.append(data.gender == 1 ? '♂' : '♀');
             }
             text.append(data.name.charAt(i));
