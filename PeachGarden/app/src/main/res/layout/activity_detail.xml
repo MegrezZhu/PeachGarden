@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context="com.zyuco.peachgarden.DetailActivity">
-        
+
         <ImageButton
             android:id="@+id/back"
             style="?android:attr/borderlessButtonStyle"
