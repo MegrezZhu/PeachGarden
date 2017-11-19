@@ -12,4 +12,12 @@
     <string name="startup_poem_3">是非成败转头空</string>
     <string name="startup_poem_4">青山依旧在</string>
     <string name="startup_poem_5">几度夕阳红</string>
+    <string name="activate_rule">你可以选择以下方式解锁更多词条：\n1.点击旋涡达指定次数\n2.点击下方按钮支付</string>
+    <string name="saved_unlock_count">saved_unlock_count</string>
+    <string name="unlocking">——正在解锁——</string>
+    <string name="unlocking_poem_1">王\n濬\n楼\n船\n下\n益\n州\n\n\n金\n陵\n王\n气\n黯\n然\n收</string>
+    <string name="unlocking_poem_2">千\n寻\n铁\n锁\n沉\n江\n底\n\n\n一\n片\n降\n幡\n出\n石\n头</string>
+    <string name="unlocking_poem_3">人\n世\n几\n回\n伤\n往\n事\n\n\n山\n形\n依\n旧\n枕\n寒\n流</string>
+    <string name="unlocking_poem_4">今\n逢\n四\n海\n为\n家\n日\n\n\n故\n垒\n萧\n萧\n芦\n荻\n秋</string>
+    <string name="new_unlock">解锁了新的词条：</string>
 </resources>
