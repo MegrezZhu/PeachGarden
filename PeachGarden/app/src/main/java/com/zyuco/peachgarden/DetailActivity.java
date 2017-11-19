@@ -6,17 +6,86 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
+
+import com.zyuco.peachgarden.library.Tools;
+import com.zyuco.peachgarden.model.Character;
 
 public class DetailActivity extends AppCompatActivity {
+
+    private ImageView avatar;
+    private TextView name;
+    private TextView belong;
+    private TextView origin;
+    private TextView live;
+    private TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
+        setStatusBarColor();
+        render();
         setPopMenu();
+        addBackClickEventListener();
+    }
+
+    protected void render() {
+        Character data = (Character) getIntent().getSerializableExtra("character");
+        avatar = (ImageView) findViewById(R.id.detail_avatar);
+        name = (TextView) findViewById(R.id.detail_name);
+        belong = (TextView) findViewById(R.id.detail_belong);
+        origin = (TextView) findViewById(R.id.detail_origin);
+        live = (TextView) findViewById(R.id.detail_live);
+        description = (TextView) findViewById(R.id.detail_desription);
+        // 名字
+        StringBuilder text = new StringBuilder();
+        for (int i = 0; i < data.name.length(); i++) {
+            if (i != 0 && i != data.name.length() - 1) {
+                text.append(data.gender == 1 ? '♂' : '♀');
+            }
+            text.append(data.name.charAt(i));
+        }
+
+        name.setText(text.toString());
+        text.setLength(0);
+
+        // 归属势力
+        text.append("归属势力:").append(data.belong != null ? data.belong : "???");
+        belong.setText(text.toString());
+        text.setLength(0);
+
+        // 籍贯
+        text.append("籍贯:").append(data.origin != null ? data.origin : "???");
+        origin.setText(text.toString());
+        text.setLength(0);
+
+        // 生卒
+        text.append("生卒:").append(data.from == 0 ? "?" : data.from + "年").append('-').append(data.to == 0 ? "?" : data.to + "年");
+        live.setText(text.toString());
+        text.setLength(0);
+
+        // 历史记载
+        description.setText(text.append("\t\t\t\t").append(data.description).toString());
+        text.setLength(0);
+
+        // 头像
+        new Tools.LoadImagesTask(avatar).execute(data.avatar);
+
+        // 背景
+        ImageView bg = (ImageView) findViewById(R.id.detail_bg);
+        bg.setImageResource(data.gender == 1 ? R.mipmap.detail_man_bg : R.mipmap.detail_woman_bg);
+    }
+
+    private void setStatusBarColor() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(0xF5F5F5);
     }
 
     protected void setPopMenu() {
@@ -57,4 +126,15 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
+    protected void addBackClickEventListener() {
+        ImageButton back = (ImageButton) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailActivity.this.finish();
+            }
+        });
+    }
+
 }
