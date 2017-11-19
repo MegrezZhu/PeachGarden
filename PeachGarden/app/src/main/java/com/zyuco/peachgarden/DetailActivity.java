@@ -131,6 +131,7 @@ public class DetailActivity extends AppCompatActivity {
 
                         } else if (menuItem.getItemId() == R.id.edit) {
                             Intent intent = new Intent(DetailActivity.this, ModifyActivity.class);
+                            intent.putExtra("character",data);
                             DetailActivity.this.startActivity(intent);
                         }
                         return false;
