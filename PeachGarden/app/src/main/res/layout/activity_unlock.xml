@@ -7,7 +7,7 @@
     tools:context="com.zyuco.peachgarden.UnlockActivity">
 
     <ImageView
-        android:src="@mipmap/activate_background"
+        android:src="@mipmap/unlock_background"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1"
@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/btn_activate"
-        android:src="@mipmap/activate_button"
+        android:src="@mipmap/unlock_button"
         android:scaleType="fitXY"
         android:layout_width="0dp"
         android:layout_height="280dp"
@@ -62,7 +62,7 @@
 
     <ImageView
         android:id="@+id/btn_activate_pay"
-        android:src="@mipmap/activate_pay_button"
+        android:src="@mipmap/unlock_pay_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
