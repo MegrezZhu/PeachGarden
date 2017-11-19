@@ -10,19 +10,18 @@
         android:src="@mipmap/activate_background"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1.25"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_activate"
         android:src="@mipmap/activate_button"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:scaleType="fitXY"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="280dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -59,11 +58,10 @@
         app:layout_constraintBottom_toTopOf="@id/btn_activate_pay"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_activate_pay"
         android:src="@mipmap/activate_pay_button"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
