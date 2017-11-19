@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEDED"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <ImageView
+        android:id="@+id/title_background"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.2"
+        android:src="@mipmap/drawer_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu"
+        android:textColor="#000"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@id/title_background"
+        app:layout_constraintLeft_toLeftOf="@id/title_background"
+        app:layout_constraintRight_toRightOf="@id/title_background"
+        app:layout_constraintTop_toTopOf="@id/title_background"/>
+
+    <ImageView
+        android:id="@+id/divider_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/drawer_divider"
+        app:layout_constraintBottom_toTopOf="@+id/main_page"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_background"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/main_page"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:text="@string/main_page"
+        android:textColor="#000"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider_2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_1"/>
+
+    <ImageView
+        android:id="@+id/divider_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/drawer_divider"
+        app:layout_constraintBottom_toTopOf="@+id/wiki_page"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_page"/>
+
+    <Button
+        android:id="@+id/wiki_page"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:text="@string/wiki_page"
+        android:textColor="#000"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider_3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_2"/>
+
+    <ImageView
+        android:id="@+id/divider_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/drawer_divider"
+        app:layout_constraintBottom_toTopOf="@+id/unlock_page"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wiki_page"/>
+
+    <Button
+        android:id="@+id/unlock_page"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:text="@string/unlock_page"
+        android:textColor="#000"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider_4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_3"/>
+
+
+    <ImageView
+        android:id="@+id/divider_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/drawer_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/unlock_page"/>
+</android.support.constraint.ConstraintLayout>
