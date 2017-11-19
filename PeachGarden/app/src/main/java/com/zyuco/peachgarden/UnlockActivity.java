@@ -25,8 +25,8 @@ public class UnlockActivity extends AppCompatActivity {
 
     private void initData() {
         sharedPref = getPreferences(Context.MODE_PRIVATE);
-        // unlockCount = sharedPref.getInt(getString(R.string.saved_activate_count), 2);
-        unlockCount = 2;
+        unlockCount = sharedPref.getInt(getString(R.string.saved_unlock_count), 2);
+        // unlockCount = 2;
     }
 
     private void initListener() {
