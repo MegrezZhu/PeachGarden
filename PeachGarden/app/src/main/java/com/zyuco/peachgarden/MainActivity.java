@@ -2,10 +2,12 @@ package com.zyuco.peachgarden;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -45,6 +47,39 @@ public class MainActivity extends AppCompatActivity {
                 // TODO: goto add page
             }
         });
+
+        final DrawerLayout drawer = findViewById(R.id.main_drawer_layout);
+        findViewById(R.id.menu_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer.openDrawer(Gravity.LEFT);
+            }
+        });
+
+        findViewById(R.id.main_page).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick: main page");
+                startActivity(MainActivity.class);
+            }
+        });
+        findViewById(R.id.wiki_page).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: goto wiki page
+            }
+        });
+        findViewById(R.id.unlock_page).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO goto unlock page
+            }
+        });
+    }
+
+    private void startActivity(Class<?> cls) {
+        Intent intent = new Intent(this, cls);
+        startActivity(intent);
     }
 
     private void initList() {

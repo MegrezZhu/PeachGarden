@@ -58,6 +58,7 @@
         app:layout_constraintTop_toTopOf="@id/appbar"/>
 
     <ImageButton
+        android:id="@+id/menu_button"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="50dp"
         android:layout_height="40dp"
