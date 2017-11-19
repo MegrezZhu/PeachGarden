@@ -16,6 +16,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.zyuco.peachgarden.library.CommonAdapter;
 import com.zyuco.peachgarden.library.DbReader;
 import com.zyuco.peachgarden.library.DbWriter;
@@ -56,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, " button clicked");
-                // TODO: goto  page
+                YoYo.with(Techniques.Pulse).duration(200).playOn(view);
+                Log.i(TAG, "add button clicked");
+                // TODO: goto add page
             }
         });
 
