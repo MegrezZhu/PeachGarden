@@ -8,4 +8,6 @@
     <string name="startup_poem_3">是非成败转头空</string>
     <string name="startup_poem_4">青山依旧在</string>
     <string name="startup_poem_5">几度夕阳红</string>
+    <string name="activate_rule">你可以通过以下方式激活更多词条：\n1.点击旋涡100次\n2.点击下方按钮支付</string>
+    <string name="hundred">壹佰</string>
 </resources>
