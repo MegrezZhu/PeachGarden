@@ -52,7 +52,7 @@ public class ActivateActivity extends AppCompatActivity {
     }
 
     private String number2String(int num) {
-        if (num == 0) return "激活";
+        if (num == 0) return "解锁";
         String[] NUMBER_TABLE = {"零", "壹","贰","叁","肆","伍","陆","柒","捌","玖"};
         String[] UNIT_TABLE = {"", "拾", "佰", "仟", "万"};
         String numberString = new StringBuffer(String.valueOf(num)).reverse().toString().trim();
