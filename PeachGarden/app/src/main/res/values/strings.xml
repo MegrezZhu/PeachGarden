@@ -6,7 +6,15 @@
     <string name="main_page">主页</string>
     <string name="wiki_page">百科</string>
     <string name="unlock_page">解锁</string>
+    <string name="about_page">关于</string>
     <string name="character_card_belong">所属：</string>
+    <string name="developers">开发人员</string>
+    <string name="developer_1">朱楚</string>
+    <string name="developer_2">周长安</string>
+    <string name="developer_3">朱理锋</string>
+    <string name="developer_4">郑佳锋</string>
+    <string name="license_title">协议</string>
+    <string name="license_main"><![CDATA[DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\nVersion 2, December 2004\n\nCopyright (C) 2004 Sam Hocevar <sam@hocevar.net>\n\nEveryone is permitted to copy and distribute verbatim or modified\ncopies of this license document, and changing it is allowed as long\nas the name is changed.\n\nDO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\nTERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION\n\n0. You just DO WHAT THE FUCK YOU WANT TO.\n]]></string>
     <string name="startup_poem_1">滚滚长江东逝水</string>
     <string name="startup_poem_2">浪花淘尽英雄</string>
     <string name="startup_poem_3">是非成败转头空</string>
