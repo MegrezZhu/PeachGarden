@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.unlock_page).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(ActivateActivity.class);
+                startActivity(UnlockActivity.class);
             }
         });
     }

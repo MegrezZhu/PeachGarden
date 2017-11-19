@@ -8,24 +8,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class ActivateActivity extends AppCompatActivity {
+public class UnlockActivity extends AppCompatActivity {
     private int activateCount;
     private int currentCount;
     private TextView activateCountView;
-    private ActivateActivity context = this;
+    private UnlockActivity context = this;
     private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activate);
+        setContentView(R.layout.activity_unlock);
         initData();
         initListener();
     }
 
     private void initData() {
         sharedPref = getPreferences(Context.MODE_PRIVATE);
-        activateCount = sharedPref.getInt(getString(R.string.saved_activate_count), 2);
+        // activateCount = sharedPref.getInt(getString(R.string.saved_activate_count), 2);
+        activateCount = 2;
     }
 
     private void initListener() {
@@ -43,7 +44,7 @@ public class ActivateActivity extends AppCompatActivity {
                     activateCount *= 2;
                     editor.putInt(getString(R.string.saved_activate_count), activateCount);
                     editor.apply();
-                    startActivity(new Intent(context, ActivatedActivity.class));
+                    startActivity(new Intent(context, UnlockingActivity.class));
                     context.finish();
                     context.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
