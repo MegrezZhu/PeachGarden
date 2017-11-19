@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, String.format("Item clicked: %s", data.name));
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, DetailActivity.class);
+                intent.putExtra("character", data);
                 startActivity(intent);
             }
 
