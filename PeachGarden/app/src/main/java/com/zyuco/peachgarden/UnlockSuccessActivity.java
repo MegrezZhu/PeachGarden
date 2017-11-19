@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -78,8 +79,14 @@ public class UnlockSuccessActivity extends AppCompatActivity {
                 // TODO: do... whatever
             }
         });
-        RecyclerView list = (RecyclerView) findViewById(R.id.rv_new_unlock);
-        list.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView list = findViewById(R.id.rv_new_unlock);
+        list.setNestedScrollingEnabled(false);
+        list.setLayoutManager(new LinearLayoutManager(this) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
         list.setAdapter(adapter);
     }
 }
