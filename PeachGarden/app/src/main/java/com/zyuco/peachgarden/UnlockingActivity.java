@@ -24,19 +24,19 @@ public class UnlockingActivity extends AppCompatActivity {
         AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
         fadeIn.setStartOffset(offset);
         fadeIn.setDuration(DURATION);
-        findViewById(R.id.activating_poem_1).startAnimation(fadeIn);
+        findViewById(R.id.unlocking_poem_1).startAnimation(fadeIn);
         offset += OFFSET;
 
         fadeIn = new AlphaAnimation(0.0f, 1.0f);
         fadeIn.setStartOffset(offset);
         fadeIn.setDuration(DURATION);
-        findViewById(R.id.activating_poem_2).startAnimation(fadeIn);
+        findViewById(R.id.unlocking_poem_2).startAnimation(fadeIn);
         offset += OFFSET;
 
         fadeIn = new AlphaAnimation(0.0f, 1.0f);
         fadeIn.setStartOffset(offset);
         fadeIn.setDuration(DURATION);
-        findViewById(R.id.activating_poem_3).startAnimation(fadeIn);
+        findViewById(R.id.unlocking_poem_3).startAnimation(fadeIn);
         offset += OFFSET;
 
         fadeIn = new AlphaAnimation(0.0f, 1.0f);
@@ -57,6 +57,6 @@ public class UnlockingActivity extends AppCompatActivity {
             @Override
             public void onAnimationRepeat(Animation animation) {}
         });
-        findViewById(R.id.activating_poem_4).startAnimation(fadeIn);
+        findViewById(R.id.unlocking_poem_4).startAnimation(fadeIn);
     }
 }

@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.TextView;
 
 public class UnlockActivity extends AppCompatActivity {
-    private int activateCount;
+    private int unlockCount;
     private int currentCount;
-    private TextView activateCountView;
+    private TextView unlockCountView;
     private UnlockActivity context = this;
     private SharedPreferences sharedPref;
 
@@ -25,24 +25,24 @@ public class UnlockActivity extends AppCompatActivity {
 
     private void initData() {
         sharedPref = getPreferences(Context.MODE_PRIVATE);
-        // activateCount = sharedPref.getInt(getString(R.string.saved_activate_count), 2);
-        activateCount = 2;
+        // unlockCount = sharedPref.getInt(getString(R.string.saved_activate_count), 2);
+        unlockCount = 2;
     }
 
     private void initListener() {
-        activateCountView = (TextView)findViewById(R.id.tv_activate_count);
-        activateCountView.setText(number2String(activateCount));
-        findViewById(R.id.btn_activate).setOnClickListener(new View.OnClickListener() {
+        unlockCountView = (TextView)findViewById(R.id.tv_unlock_count);
+        unlockCountView.setText(number2String(unlockCount));
+        findViewById(R.id.btn_unlock).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (activateCount - currentCount > 0) {
+                if (unlockCount - currentCount > 0) {
                     currentCount++;
-                    String str = number2String(activateCount - currentCount);
-                    activateCountView.setText(str);
+                    String str = number2String(unlockCount - currentCount);
+                    unlockCountView.setText(str);
                 } else {
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    activateCount *= 2;
-                    editor.putInt(getString(R.string.saved_activate_count), activateCount);
+                    unlockCount *= 2;
+                    editor.putInt(getString(R.string.saved_unlock_count), unlockCount);
                     editor.apply();
                     startActivity(new Intent(context, UnlockingActivity.class));
                     context.finish();

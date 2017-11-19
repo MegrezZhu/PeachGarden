@@ -17,7 +17,7 @@
         />
 
     <ImageView
-        android:id="@+id/btn_activate"
+        android:id="@+id/btn_unlock"
         android:src="@mipmap/unlock_button"
         android:scaleType="fitXY"
         android:layout_width="0dp"
@@ -26,26 +26,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_activate_rule"
+        app:layout_constraintBottom_toTopOf="@id/tv_unlock_rule"
         />
 
     <TextView
-        android:id="@+id/tv_activate_count"
+        android:id="@+id/tv_unlock_count"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="55sp"
         android:fontFamily="@font/kebenyuesong"
         android:background="#00000000"
         android:layout_marginEnd="15dp"
-        app:layout_constraintTop_toTopOf="@id/btn_activate"
-        app:layout_constraintBottom_toBottomOf="@id/btn_activate"
-        app:layout_constraintLeft_toLeftOf="@id/btn_activate"
-        app:layout_constraintRight_toRightOf="@id/btn_activate"
+        app:layout_constraintTop_toTopOf="@id/btn_unlock"
+        app:layout_constraintBottom_toBottomOf="@id/btn_unlock"
+        app:layout_constraintLeft_toLeftOf="@id/btn_unlock"
+        app:layout_constraintRight_toRightOf="@id/btn_unlock"
         android:layout_width="250dp"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tv_activate_rule"
+        android:id="@+id/tv_unlock_rule"
         android:text="@string/activate_rule"
         android:gravity="center"
         android:textSize="18sp"
@@ -54,20 +54,20 @@
         android:textColor="#000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_activate"
+        app:layout_constraintTop_toBottomOf="@id/btn_unlock"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_activate_pay"
+        app:layout_constraintBottom_toTopOf="@id/btn_unlock_pay"
         />
 
     <ImageView
-        android:id="@+id/btn_activate_pay"
+        android:id="@+id/btn_unlock_pay"
         android:src="@mipmap/unlock_pay_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        app:layout_constraintTop_toBottomOf="@id/tv_activate_rule"
+        app:layout_constraintTop_toBottomOf="@id/tv_unlock_rule"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
