@@ -20,8 +20,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance" />
-        <activity android:name=".DetailActivity" />
+            android:launchMode="singleInstance"/>
+        <activity android:name=".DetailActivity"/>
+        <activity android:name=".ModifyActivity"/>
         <activity android:name=".UnlockActivity" />
         <activity android:name=".UnlockingActivity" />
         <activity android:name=".UnlockSuccessActivity" />

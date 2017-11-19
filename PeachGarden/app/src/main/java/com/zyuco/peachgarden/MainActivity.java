@@ -24,6 +24,7 @@ import com.zyuco.peachgarden.library.DbWriter;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
