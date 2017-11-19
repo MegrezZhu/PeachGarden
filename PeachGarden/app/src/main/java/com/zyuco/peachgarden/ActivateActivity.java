@@ -1,18 +1,15 @@
 package com.zyuco.peachgarden;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
-import java.util.Random;
-
 public class ActivateActivity extends AppCompatActivity {
-    private int activateCount = 100;
+    private int activateCount = 3;
     private TextView activateCountView;
+    private ActivateActivity context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +24,14 @@ public class ActivateActivity extends AppCompatActivity {
         findViewById(R.id.btn_activate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String str = number2String(--activateCount);
-                activateCountView.setText(str);
+                if (activateCount > 1) {
+                    String str = number2String(--activateCount);
+                    activateCountView.setText(str);
+                } else {
+                    startActivity(new Intent(context, ActivatedActivity.class));
+                    context.finish();
+                    context.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
             }
         });
     }
