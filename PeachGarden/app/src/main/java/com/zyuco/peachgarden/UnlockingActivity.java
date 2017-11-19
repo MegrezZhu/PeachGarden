@@ -3,6 +3,8 @@ package com.zyuco.peachgarden;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
@@ -14,6 +16,13 @@ public class UnlockingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlocking);
         animation();
+        setStatusBarColor();
+    }
+
+    private void setStatusBarColor() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(0xFFFAFAFA);
     }
 
     private void animation() {
@@ -44,7 +53,8 @@ public class UnlockingActivity extends AppCompatActivity {
         fadeIn.setDuration(DURATION);
         fadeIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) {}
+            public void onAnimationStart(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -55,7 +65,8 @@ public class UnlockingActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationRepeat(Animation animation) {
+            }
         });
         findViewById(R.id.unlocking_poem_4).startAnimation(fadeIn);
     }
