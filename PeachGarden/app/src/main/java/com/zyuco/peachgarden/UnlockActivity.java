@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.zyuco.peachgarden.library.Tools;
 
 public class UnlockActivity extends AppCompatActivity {
@@ -37,6 +39,8 @@ public class UnlockActivity extends AppCompatActivity {
         findViewById(R.id.btn_unlock).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                YoYo.with(Techniques.Pulse).duration(200).playOn(view);
+                YoYo.with(Techniques.Pulse).duration(200).playOn(unlockCountView);
                 if (unlockCount - currentCount > 0) {
                     currentCount++;
                     String str = Tools.num2String(unlockCount - currentCount);
@@ -50,6 +54,12 @@ public class UnlockActivity extends AppCompatActivity {
                     context.finish();
                     context.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
+            }
+        });
+        findViewById(R.id.btn_unlock_pay).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                YoYo.with(Techniques.Pulse).duration(200).playOn(view);
             }
         });
     }

@@ -16,13 +16,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.zyuco.peachgarden.library.CommonAdapter;
 import com.zyuco.peachgarden.library.DbReader;
 import com.zyuco.peachgarden.library.DbWriter;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                YoYo.with(Techniques.Pulse).duration(200).playOn(view);
                 Log.i(TAG, "add button clicked");
                 // TODO: goto add page
             }

@@ -1,15 +1,16 @@
 package com.zyuco.peachgarden;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.zyuco.peachgarden.library.CommonAdapter;
 import com.zyuco.peachgarden.library.DbReader;
-import com.zyuco.peachgarden.library.DbWriter;
 import com.zyuco.peachgarden.library.Tools;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
@@ -24,6 +25,13 @@ public class UnlockSuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlock_success);
         initList();
+        animation();
+    }
+
+    private void animation() {
+        YoYo.with(Techniques.Landing)
+                .duration(4000)
+                .playOn(findViewById(R.id.iv_unlock_success));
     }
 
     private void initList() {
