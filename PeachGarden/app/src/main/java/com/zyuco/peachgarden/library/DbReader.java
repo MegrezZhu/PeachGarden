@@ -42,6 +42,20 @@ public class DbReader {
         return res;
     }
 
+    public List<Character> getRandomCharacters(int count) {
+        String select = "SELECT * " +
+                "FROM " + DbHelper.TABLE_CHARACTER + " as c " +
+                "WHERE c._id NOT IN ( " +
+                "SELECT character_id " +
+                "FROM " + DbHelper.TABLE_OWN + " " +
+                ")" +
+                "ORDER BY RANDOM() LIMIT " + count;
+        Cursor cursor = db.rawQuery(select, null);
+        List<Character> res = getAllCharactersByCursor(cursor);
+        cursor.close();
+        return res;
+    }
+
     private List<Character> getAllCharactersByCursor(Cursor cursor) {
         List<Character> result = new ArrayList<>(cursor.getCount());
         cursor.moveToFirst();

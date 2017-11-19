@@ -25,8 +25,8 @@
         <activity android:name=".UnlockActivity"/>
         <activity android:name=".UnlockingActivity"/>
         <activity android:name=".UnlockSuccessActivity"/>
-        <activity android:name=".AboutActivity">
-        </activity>
+        <activity android:name=".AboutActivity"/>
+        <activity android:name=".ModifyActivity"/>
     </application>
 
 </manifest>

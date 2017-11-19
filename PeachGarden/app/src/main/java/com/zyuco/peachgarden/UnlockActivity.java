@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.zyuco.peachgarden.library.Tools;
+
 public class UnlockActivity extends AppCompatActivity {
     private int unlockCount;
     private int currentCount;
@@ -25,19 +27,19 @@ public class UnlockActivity extends AppCompatActivity {
 
     private void initData() {
         sharedPref = getPreferences(Context.MODE_PRIVATE);
-        // unlockCount = sharedPref.getInt(getString(R.string.saved_activate_count), 2);
-        unlockCount = 2;
+        unlockCount = sharedPref.getInt(getString(R.string.saved_unlock_count), 2);
+        // unlockCount = 2;
     }
 
     private void initListener() {
         unlockCountView = (TextView)findViewById(R.id.tv_unlock_count);
-        unlockCountView.setText(number2String(unlockCount));
+        unlockCountView.setText(Tools.num2String(unlockCount));
         findViewById(R.id.btn_unlock).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (unlockCount - currentCount > 0) {
                     currentCount++;
-                    String str = number2String(unlockCount - currentCount);
+                    String str = Tools.num2String(unlockCount - currentCount);
                     unlockCountView.setText(str);
                 } else {
                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -50,25 +52,5 @@ public class UnlockActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private String number2String(int num) {
-        if (num == 0) return "解锁";
-        String[] NUMBER_TABLE = {"零", "壹","贰","叁","肆","伍","陆","柒","捌","玖"};
-        String[] UNIT_TABLE = {"", "拾", "佰", "仟", "万"};
-        String numberString = new StringBuffer(String.valueOf(num)).reverse().toString().trim();
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < numberString.length(); i++) {
-            builder.append(UNIT_TABLE[i]);
-            builder.append(NUMBER_TABLE[numberString.charAt(i) - 48]);
-        }
-        builder.reverse();
-        String result = builder.toString();
-        result = result.replaceAll("零[拾佰仟]", "零");
-        result = result.replaceAll("零万", "万");
-        while (result.charAt(result.length() - 1) == '零') {
-            result = result.substring(0, result.length() - 1);
-        }
-        return result;
     }
 }

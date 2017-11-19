@@ -46,7 +46,7 @@
 
     <TextView
         android:id="@+id/tv_unlock_rule"
-        android:text="@string/activate_rule"
+        android:text="@string/unlock_rule"
         android:gravity="center"
         android:textSize="18sp"
         android:lineSpacingMultiplier="1.25"
