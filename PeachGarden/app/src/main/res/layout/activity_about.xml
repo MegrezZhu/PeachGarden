@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/detail_man_bg">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.zyuco.peachgarden.AboutActivity">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/developers_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:ems="1"
+            android:paddingBottom="25dp"
+            android:text="@string/developers"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo"/>
+
+        <View
+            android:id="@+id/developers_divider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="5dp"
+            android:background="#000"
+            app:layout_constraintBottom_toBottomOf="@id/developers_title"
+            app:layout_constraintRight_toLeftOf="@id/developers_title"
+            app:layout_constraintTop_toTopOf="@id/developers_title"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/about_brush"
+            app:layout_constraintBottom_toBottomOf="@id/developers_divider"
+            app:layout_constraintRight_toLeftOf="@id/developers_divider"
+            app:layout_constraintTop_toTopOf="@id/developers_divider"/>
+
+        <TextView
+            android:id="@+id/developer_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:ems="1"
+            android:text="@string/developer_1"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:layout_constraintRight_toLeftOf="@id/developers_divider"
+            app:layout_constraintTop_toTopOf="@id/developers_title"/>
+
+        <TextView
+            android:id="@+id/developer_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:ems="1"
+            android:text="@string/developer_2"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:layout_constraintRight_toLeftOf="@id/developer_1"
+            app:layout_constraintTop_toTopOf="@id/developers_title"/>
+
+        <TextView
+            android:id="@+id/developer_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:ems="1"
+            android:text="@string/developer_3"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:layout_constraintRight_toLeftOf="@id/developer_2"
+            app:layout_constraintTop_toTopOf="@id/developers_title"/>
+
+        <TextView
+            android:id="@+id/developer_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:ems="1"
+            android:text="@string/developer_4"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:layout_constraintRight_toLeftOf="@id/developer_3"
+            app:layout_constraintTop_toTopOf="@id/developers_title"/>
+
+
+        <TextView
+            android:id="@+id/license_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:ems="1"
+            android:text="@string/license_title"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/developers_title"/>
+
+        <View
+            android:id="@+id/license_divider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="5dp"
+            android:background="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/license"
+            app:layout_constraintRight_toLeftOf="@id/license_title"
+            app:layout_constraintTop_toTopOf="@id/license_title"/>
+
+        <TextView
+            android:id="@+id/license"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:maxLines="1000"
+            android:text="@string/license_main"
+            android:textColor="#000"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/license_divider"
+            app:layout_constraintTop_toTopOf="@id/license_divider"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
