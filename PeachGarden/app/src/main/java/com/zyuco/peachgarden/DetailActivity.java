@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.zyuco.peachgarden.library.Tools;
@@ -78,8 +79,8 @@ public class DetailActivity extends AppCompatActivity {
         new Tools.LoadImagesTask(avatar).execute(data.avatar);
 
         // 背景
-        ImageView bg = (ImageView) findViewById(R.id.detail_bg);
-        bg.setImageResource(data.gender == 1 ? R.mipmap.detail_man_bg : R.mipmap.detail_woman_bg);
+        ScrollView scrollView = findViewById(R.id.detail_scroll_view);
+        scrollView.setBackgroundResource(data.gender == 1 ? R.mipmap.detail_man_bg : R.mipmap.detail_woman_bg);
     }
 
     private void setStatusBarColor() {
