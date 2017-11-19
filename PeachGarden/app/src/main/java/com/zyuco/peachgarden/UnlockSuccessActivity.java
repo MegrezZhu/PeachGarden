@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -27,22 +29,28 @@ public class UnlockSuccessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_unlock_success);
         initList();
         animation();
+        setStatusBarColor();
+    }
+
+    private void setStatusBarColor() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(0xFFFAFAFA);
     }
 
     private void animation() {
         YoYo.with(Techniques.Landing)
-                .duration(4000)
-                .playOn(findViewById(R.id.iv_unlock_success));
+            .duration(4000)
+            .playOn(findViewById(R.id.iv_unlock_success));
     }
 
     private void initList() {
         List<Character> res = DbReader.getInstance(this).getRandomCharacters(Tools.random(1, 10));
 
         Intent broadcast = new Intent(MainActivity.NOTIFY_ITEMS_ADDITION);
-        broadcast.putExtra("characters", (ArrayList<Character>)res);
+        broadcast.putExtra("characters", (ArrayList<Character>) res);
         sendBroadcast(broadcast);
-        ((TextView)findViewById(R.id.tv_new_unlock)).setText(getString(R.string.new_unlock).replace("${n}", String.valueOf(res.size())));
-
+        ((TextView) findViewById(R.id.tv_new_unlock)).setText(getString(R.string.new_unlock).replace("${n}", String.valueOf(res.size())));
 
 
         final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
