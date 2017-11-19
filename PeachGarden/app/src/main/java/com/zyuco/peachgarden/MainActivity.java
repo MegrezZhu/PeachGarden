@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "add button clicked");
-                // TODO: goto add page
+                Log.i(TAG, " button clicked");
+                // TODO: goto  page
             }
         });
 

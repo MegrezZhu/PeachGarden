@@ -1,6 +1,7 @@
 package com.zyuco.peachgarden;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView origin;
     private TextView live;
     private TextView description;
-
+    private TextView _abstract;
+    Character data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +38,13 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     protected void render() {
-        Character data = (Character) getIntent().getSerializableExtra("character");
+        data = (Character) getIntent().getSerializableExtra("character");
         avatar = findViewById(R.id.detail_avatar);
         name = findViewById(R.id.detail_name);
         belong = findViewById(R.id.detail_belong);
         origin = findViewById(R.id.detail_origin);
         live = findViewById(R.id.detail_live);
+        _abstract = findViewById(R.id.detail_abstract);
         description = findViewById(R.id.detail_desription);
         // 名字
         StringBuilder text = new StringBuilder();
@@ -68,6 +71,10 @@ public class DetailActivity extends AppCompatActivity {
         // 生卒
         text.append("生卒:").append(data.from == 0 ? "?" : data.from + "年").append('-').append(data.to == 0 ? "?" : data.to + "年");
         live.setText(text.toString());
+        text.setLength(0);
+
+        //人物简介
+        _abstract.setText(text.append("\t\t\t\t").append(data.abstractDescription).toString());
         text.setLength(0);
 
         // 历史记载
@@ -116,7 +123,8 @@ public class DetailActivity extends AppCompatActivity {
                                 }).create().show();
 
                         } else if (menuItem.getItemId() == R.id.edit) {
-                            // TODO 去修改页
+                            Intent intent = new Intent(DetailActivity.this, ModifyActivity.class);
+                            DetailActivity.this.startActivity(intent);
                         }
                         return false;
                     }

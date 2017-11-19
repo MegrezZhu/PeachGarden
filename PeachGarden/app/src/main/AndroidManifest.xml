@@ -20,6 +20,7 @@
             android:name=".MainActivity"
             android:launchMode="singleInstance"/>
         <activity android:name=".DetailActivity"/>
+        <activity android:name=".ModifyActivity"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
