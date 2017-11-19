@@ -28,9 +28,14 @@ public class UnlockSuccessActivity extends AppCompatActivity {
 
     private void initList() {
         List<Character> res = DbReader.getInstance(this).getRandomCharacters(Tools.random(1, 10));
+
         Intent broadcast = new Intent(MainActivity.NOTIFY_ITEMS_ADDITION);
         broadcast.putExtra("characters", (ArrayList<Character>)res);
         sendBroadcast(broadcast);
+        ((TextView)findViewById(R.id.tv_new_unlock)).setText(getString(R.string.new_unlock).replace("${n}", String.valueOf(res.size())));
+
+
+
         final CommonAdapter<Character> adapter = new CommonAdapter<Character>(this, R.layout.character_item, res) {
             @Override
             public void convert(ViewHolder holder, Character data) {
