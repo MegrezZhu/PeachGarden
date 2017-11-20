@@ -39,7 +39,6 @@ public class DetailActivity extends AppCompatActivity {
         setPopMenu();
         addBackClickEventListener();
     }
-
     protected void render() {
         data = (Character) getIntent().getSerializableExtra("character");
         avatar = findViewById(R.id.detail_avatar);
