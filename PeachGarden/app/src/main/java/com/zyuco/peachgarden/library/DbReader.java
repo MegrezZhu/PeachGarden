@@ -3,6 +3,7 @@ package com.zyuco.peachgarden.library;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.zyuco.peachgarden.model.Character;
 
@@ -52,6 +53,16 @@ public class DbReader {
                 "ORDER BY RANDOM() LIMIT " + count;
         Cursor cursor = db.rawQuery(select, null);
         List<Character> res = getAllCharactersByCursor(cursor);
+        cursor.close();
+        return res;
+    }
+
+    public boolean checkIfOwned(Character ch) {
+        String select = "SELECT * " +
+                "FROM " + DbHelper.TABLE_OWN + " AS o " +
+                "WHERE o.character_id = " + String.valueOf(ch._id);
+        Cursor cursor = db.rawQuery(select, null);
+        boolean res = cursor.getCount() != 0;
         cursor.close();
         return res;
     }
