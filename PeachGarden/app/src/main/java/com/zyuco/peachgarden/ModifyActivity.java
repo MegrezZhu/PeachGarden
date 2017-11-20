@@ -1,5 +1,6 @@
 package com.zyuco.peachgarden;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,9 +11,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zyuco.peachgarden.library.Tools;
 import com.zyuco.peachgarden.model.Character;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by zhengjiafeng on 2017/11/19.
@@ -29,7 +36,7 @@ public class ModifyActivity extends AppCompatActivity {
     private EditText live_from;
     private EditText live_to;
     private EditText gender;
-
+    private Character data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +45,11 @@ public class ModifyActivity extends AppCompatActivity {
         setStatusBarColor();
         render();
         addBackClickEventListener();
+        addSaveClickEventListener();
     }
 
     protected void render() {
-        Character data = (Character) getIntent().getSerializableExtra("character");
+        data = (Character) getIntent().getSerializableExtra("character");
         avatar = findViewById(R.id.detail_avatar);
         name = findViewById(R.id.detail_name);
         belong = findViewById(R.id.detail_belong_input);
@@ -116,6 +124,60 @@ public class ModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Todo: modify db and return mainpage
+            }
+        });
+    }
+    public boolean isNumeric(String str){
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isNum = pattern.matcher(str);
+        if( !isNum.matches() ){
+            return false;
+        }
+        return true;
+    }
+    protected void addSaveClickEventListener(){
+        ImageButton save = (ImageButton) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Todo: modify db and return mainpage
+                if (name.getText().toString().trim().equals("") || origin.getText().toString().trim().equals("")
+                        ||gender.getText().toString().trim().equals("")||belong.getText().toString().trim().equals("")
+                        ||live_from.getText().toString().trim().equals("")||live_to.getText().toString().trim().equals("")
+                        ||description.getText().toString().trim().equals("")||_abstract.getText().toString().trim().equals("")){
+                    Toast.makeText(ModifyActivity.this, "所有输入不能为空", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Character ch = new Character();
+                    ch._id = data._id;
+                    ch.name = name.getText().toString();
+                    ch.pinyin = null;
+                    ch.avatar = data.avatar;
+                    ch.abstractDescription = _abstract.getText().toString();
+                    ch.description = description.getText().toString();
+                    ch.gender = gender.getText().toString() == "男" ? 1 : 0;
+                    if (isNumeric(live_from.getText().toString())){
+                        ch.from = Integer.parseInt(live_from.getText().toString());
+                    }
+                    else{
+                        ch.from = 0;
+                    }
+                    if (isNumeric(live_to.getText().toString())){
+                        ch.to = Integer.parseInt(live_to.getText().toString());
+                    }
+                    else{
+                        ch.to = 0;
+                    }
+                    ch.origin = origin.getText().toString();
+                    ch.belongId = -1;
+                    ch.belong = belong.getText().toString();
+                    List<Character> res = new ArrayList<Character>();
+                    res.add(ch);
+                    Intent broadcast = new Intent(MainActivity.NOTIFY_ITEMS_MODIFY);
+                    broadcast.putExtra("characters", (ArrayList<Character>) res);
+                    sendBroadcast(broadcast);
+                    ModifyActivity.this.finish();
+                }
             }
         });
     }

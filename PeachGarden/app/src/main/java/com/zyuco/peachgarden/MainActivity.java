@@ -33,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String NOTIFY_ITEM_DELETION = "com.zyuco.peachgarden.MainActivity.notifyItemDeletion";
     public static final String NOTIFY_ITEMS_ADDITION = "com.zyuco.peachgarden.MainActivity.notifyItemsAddition";
     public static final String NOTIFY_ITEMS_ADDITIONS = "com.zyuco.peachgarden.MainActivity.notifyItemsAdditions";
+    public static final String NOTIFY_ITEMS_MODIFY = "com.zyuco.peachgarden.MainActivity.notifyItemsModify";
 
     private List<Character> list;
     private CommonAdapter<Character> adapter;
+    private Character temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         filter.addAction(NOTIFY_ITEM_DELETION);
         filter.addAction(NOTIFY_ITEMS_ADDITION);
         filter.addAction(NOTIFY_ITEMS_ADDITIONS);
+        filter.addAction(NOTIFY_ITEMS_MODIFY);
         Receiver receiver = new Receiver();
         registerReceiver(receiver, filter);
     }
@@ -168,8 +171,12 @@ public class MainActivity extends AppCompatActivity {
                     addCharacters(list);
                     break;
                 case NOTIFY_ITEMS_ADDITIONS:
-                    List<Character> lists = (ArrayList<Character>)intent.getSerializableExtra("characters");
-                    addNewCharacters(lists);
+                    List<Character> add_list = (ArrayList<Character>)intent.getSerializableExtra("characters");
+                    addNewCharacters(add_list);
+                    break;
+                case NOTIFY_ITEMS_MODIFY:
+                    List<Character> modify_list = (ArrayList<Character>)intent.getSerializableExtra("characters");
+                    modifyCharacters(modify_list);
                     break;
             }
         }
@@ -212,6 +219,34 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     DbWriter.getInstance(MainActivity.this).addCharacters(characterList);
                     DbWriter.getInstance(MainActivity.this).addCharacters2Own(characterList);
+                }
+            }).start();
+        }
+        private void modifyCharacters(List<Character> characters) {
+            final List<Character> characterList = characters;
+            temp = new Character();
+            for (Character ch:characterList){
+                long _id = ch._id;
+                for (Character ch1:list){
+                    if(ch1._id == _id){
+                        temp = ch1;
+                        int index = list.indexOf(ch1);
+                        list.remove(ch1);
+                        list.add(index, ch);
+                        break;
+                    }
+                }
+            }
+            adapter.notifyDataSetChanged();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    DbWriter.getInstance(MainActivity.this).deleteCharacter(temp);
+                    DbWriter.getInstance(MainActivity.this).addCharacters(characterList);
+                    DbWriter.getInstance(MainActivity.this).deleteOwnedCharacter(temp);
+                    DbWriter.getInstance(MainActivity.this).addCharacters2Own(characterList);
+                    //DbWriter.getInstance(MainActivity.this).updateCharacters(characterList);
+                    //DbWriter.getInstance(MainActivity.this).updateCharacters2Own(characterList);
                 }
             }).start();
         }
