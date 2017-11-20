@@ -76,7 +76,7 @@ public class DetailActivity extends AppCompatActivity {
         live.setText(text.toString());
         text.setLength(0);
 
-        //人物简介
+        // 人物简介
         _abstract.setText(text.append("\t\t\t\t").append(data.abstractDescription).toString());
         text.setLength(0);
 

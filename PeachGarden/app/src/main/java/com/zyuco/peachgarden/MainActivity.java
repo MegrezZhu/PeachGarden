@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: goto wiki page
+                startActivity(EncyclopediaActivity.class);
             }
         });
         findViewById(R.id.unlock_page).setOnClickListener(new View.OnClickListener() {
