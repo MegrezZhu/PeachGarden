@@ -4,10 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/detail_scroll_view"
+    android:id="@+id/unlock_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/unlock_success_background">
+    android:background="@mipmap/unlock_success_background"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
     <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

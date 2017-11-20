@@ -144,7 +144,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     protected void addBackClickEventListener() {
-        ImageButton back = (ImageButton) findViewById(R.id.back);
+        ImageButton back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
