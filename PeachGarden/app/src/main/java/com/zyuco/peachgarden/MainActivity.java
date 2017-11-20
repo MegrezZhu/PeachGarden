@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String NOTIFY_ITEM_DELETION = "com.zyuco.peachgarden.MainActivity.notifyItemDeletion";
     public static final String NOTIFY_ITEMS_ADDITION = "com.zyuco.peachgarden.MainActivity.notifyItemsAddition";
+    public static final String NOTIFY_ITEMS_ADDITIONS = "com.zyuco.peachgarden.MainActivity.notifyItemsAdditions";
 
     private List<Character> list;
     private CommonAdapter<Character> adapter;
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(NOTIFY_ITEM_DELETION);
         filter.addAction(NOTIFY_ITEMS_ADDITION);
+        filter.addAction(NOTIFY_ITEMS_ADDITIONS);
         Receiver receiver = new Receiver();
         registerReceiver(receiver, filter);
     }
@@ -165,6 +167,10 @@ public class MainActivity extends AppCompatActivity {
                     List<Character> list = (ArrayList<Character>)intent.getSerializableExtra("characters");
                     addCharacters(list);
                     break;
+                case NOTIFY_ITEMS_ADDITIONS:
+                    List<Character> lists = (ArrayList<Character>)intent.getSerializableExtra("characters");
+                    addNewCharacters(lists);
+                    break;
             }
         }
 
@@ -192,6 +198,19 @@ public class MainActivity extends AppCompatActivity {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    DbWriter.getInstance(MainActivity.this).addCharacters2Own(characterList);
+
+                }
+            }).start();
+        }
+        private void addNewCharacters(List<Character> characters) {
+            final List<Character> characterList = characters;
+            list.addAll(characterList);
+            adapter.notifyDataSetChanged();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    DbWriter.getInstance(MainActivity.this).addCharacters(characterList);
                     DbWriter.getInstance(MainActivity.this).addCharacters2Own(characterList);
                 }
             }).start();

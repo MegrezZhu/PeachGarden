@@ -66,10 +66,20 @@
             android:textStyle="bold"
             android:text=""
             android:theme="@style/MyEditText"
-            android:maxLength="10"
+            android:maxLength="4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:textCursorDrawable="@null"
+            app:layout_constraintTop_toBottomOf="@id/detail_avatarBg"/>
+        <TextView
+            android:id="@+id/before_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:text="姓名："
+            app:layout_constraintRight_toLeftOf="@+id/detail_name"
             app:layout_constraintTop_toBottomOf="@id/detail_avatarBg"/>
 
         <TextView

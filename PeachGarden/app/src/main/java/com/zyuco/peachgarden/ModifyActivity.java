@@ -24,7 +24,6 @@ public class ModifyActivity extends AppCompatActivity {
     private EditText name;
     private EditText belong;
     private EditText origin;
-    private EditText live;
     private EditText description;
     private EditText _abstract;
     private EditText live_from;
