@@ -8,6 +8,8 @@ import com.zyuco.peachgarden.model.Character;
 
 import java.util.List;
 
+import static com.zyuco.peachgarden.library.DbHelper.TABLE_CHARACTER;
+
 /**
  * DbWriter is an interface to manipulate (write-only) Database
  */
@@ -26,6 +28,14 @@ public class DbWriter {
             ContentValues values = new ContentValues();
             values.put("character_id", ch._id);
             db.insert(DbHelper.TABLE_OWN, null, values);
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+    public void addCharacters(List<Character> list) {
+        db.beginTransaction();
+        for (Character ch : list) {
+            ch._id = db.insert(TABLE_CHARACTER, null, ch.toContentValues());
         }
         db.setTransactionSuccessful();
         db.endTransaction();
