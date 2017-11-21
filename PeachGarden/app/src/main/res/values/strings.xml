@@ -28,4 +28,5 @@
     <string name="unlocking_poem_3">人世几回伤往事，山形依旧枕寒流</string>
     <string name="unlocking_poem_4">今逢四海为家日，故垒萧萧芦荻秋</string>
     <string name="new_unlock">解锁了${n}条新的词条：</string>
+    <string name="locked">未解锁</string>
 </resources>

@@ -57,7 +57,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
         adapter = new CommonAdapter<Character>(this, R.layout.character_item, list) {
             @Override
             public void convert(ViewHolder holder, Character data) {
-                boolean hasUnlock = DbReader.getInstance(EncyclopediaActivity.this).checkIfOwned(data);
+                boolean unlocked = DbReader.getInstance(EncyclopediaActivity.this).checkIfOwned(data);
                 TextView name = holder.getView(R.id.name);
                 name.setText(data.name);
                 TextView belong = holder.getView(R.id.belong);
@@ -65,8 +65,10 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 TextView description = holder.getView(R.id.abstract_description);
                 description.setText("\t\t\t\t" + data.abstractDescription);
                 ConstraintLayout layout = holder.getView(R.id.list_item_wrapper);
-                if (!hasUnlock) {
-                    layout.setBackgroundResource(R.mipmap.lock_item_background);
+
+                if (!unlocked) {
+                    holder.getView(R.id.locked_mask).setVisibility(View.VISIBLE);
+                    holder.getView(R.id.locked_mask_text).setVisibility(View.VISIBLE);
                     layout.setClickable(false);
                 }
             }
