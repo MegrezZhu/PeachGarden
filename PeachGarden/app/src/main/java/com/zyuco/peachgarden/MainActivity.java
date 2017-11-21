@@ -75,16 +75,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.main_page).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(MainActivity.class);
-            }
-        });
         findViewById(R.id.wiki_page).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: goto wiki page
                 startActivity(EncyclopediaActivity.class);
             }
         });
