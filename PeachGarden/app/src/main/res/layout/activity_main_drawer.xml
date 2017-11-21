@@ -41,38 +41,11 @@
         android:layout_marginStart="10dp"
         android:adjustViewBounds="true"
         android:src="@mipmap/drawer_divider"
-        app:layout_constraintBottom_toTopOf="@+id/main_page"
+        app:layout_constraintBottom_toTopOf="@+id/wiki_page"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_background"
         app:layout_constraintVertical_chainStyle="packed"/>
-
-    <Button
-        android:id="@+id/main_page"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:text="@string/main_page"
-        android:textColor="#000"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_1"/>
-
-    <ImageView
-        android:id="@+id/divider_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:adjustViewBounds="true"
-        android:src="@mipmap/drawer_divider"
-        app:layout_constraintBottom_toTopOf="@+id/wiki_page"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_page"/>
 
     <Button
         android:id="@+id/wiki_page"
@@ -83,13 +56,13 @@
         android:text="@string/wiki_page"
         android:textColor="#000"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider_3"
+        app:layout_constraintBottom_toTopOf="@+id/divider_2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_2"/>
+        app:layout_constraintTop_toBottomOf="@id/divider_1"/>
 
     <ImageView
-        android:id="@+id/divider_3"
+        android:id="@+id/divider_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
@@ -110,14 +83,14 @@
         android:text="@string/unlock_page"
         android:textColor="#000"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider_4"
+        app:layout_constraintBottom_toTopOf="@+id/divider_3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_3"/>
+        app:layout_constraintTop_toBottomOf="@id/divider_2"/>
 
 
     <ImageView
-        android:id="@+id/divider_4"
+        android:id="@+id/divider_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
@@ -138,13 +111,13 @@
         android:text="@string/about_page"
         android:textColor="#000"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider_5"
+        app:layout_constraintBottom_toTopOf="@+id/divider_4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_4"/>
+        app:layout_constraintTop_toBottomOf="@id/divider_3"/>
 
     <ImageView
-        android:id="@+id/divider_5"
+        android:id="@+id/divider_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
