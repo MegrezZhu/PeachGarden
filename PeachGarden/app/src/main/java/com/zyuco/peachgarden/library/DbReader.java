@@ -3,7 +3,6 @@ package com.zyuco.peachgarden.library;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.zyuco.peachgarden.model.Character;
 
@@ -53,6 +52,25 @@ public class DbReader {
                 "ORDER BY RANDOM() LIMIT " + count;
         Cursor cursor = db.rawQuery(select, null);
         List<Character> res = getAllCharactersByCursor(cursor);
+        cursor.close();
+        return res;
+    }
+
+    public List<Character> getSearchCharacters(String key) {
+        Cursor cursor = db.query(DbHelper.TABLE_CHARACTER, null, "name like '%" + key + "%'", null, null, null, null);
+        List<Character> res = cursor.getCount() != 0 ? getAllCharactersByCursor(cursor) : null;
+        cursor.close();
+        return res;
+    }
+
+    public List<Character> getSearchOwnCharacters(String key) {
+        String select = "SELECT * " +
+                "FROM " + DbHelper.TABLE_OWN + " AS o " +
+                "JOIN " + DbHelper.TABLE_CHARACTER + " AS c " +
+                "ON c._id = o.character_id " +
+                "WHERE c.name LIKE '%" + key + "%'";
+        Cursor cursor = db.rawQuery(select, null);
+        List<Character> res = cursor.getCount() != 0 ? getAllCharactersByCursor(cursor) : null;
         cursor.close();
         return res;
     }
