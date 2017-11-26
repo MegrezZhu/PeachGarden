@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/detail_avatarBg"
+            android:id="@+id/detail_avatar_background"
             android:layout_width="170dp"
             android:layout_height="150dp"
             android:layout_marginTop="70dp"
@@ -52,7 +52,7 @@
             android:layout_marginTop="36dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detail_avatarBg"/>
+            app:layout_constraintTop_toTopOf="@id/detail_avatar_background"/>
 
         <TextView
             android:id="@+id/detail_name"
@@ -64,10 +64,10 @@
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_avatarBg"/>
+            app:layout_constraintTop_toBottomOf="@id/detail_avatar_background"/>
 
         <TextView
-            android:id="@+id/detail_belong"
+            android:id="@+id/detail_hint_belong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -89,7 +89,7 @@
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_belong"/>
+            app:layout_constraintTop_toBottomOf="@id/detail_hint_belong"/>
 
         <TextView
             android:id="@+id/detail_live"
@@ -103,7 +103,7 @@
             app:layout_constraintTop_toBottomOf="@id/detail_origin"/>
 
         <TextView
-            android:id="@+id/abstractLabel"
+            android:id="@+id/detail_hint_abstract"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -127,9 +127,9 @@
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/abstractLabel"/>
+            app:layout_constraintTop_toBottomOf="@id/detail_hint_abstract"/>
         <TextView
-            android:id="@+id/historyLabel"
+            android:id="@+id/detail_hint_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -142,7 +142,7 @@
             app:layout_constraintTop_toBottomOf="@id/detail_abstract"/>
 
         <TextView
-            android:id="@+id/detail_desription"
+            android:id="@+id/detail_history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -153,6 +153,6 @@
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/historyLabel"/>
+            app:layout_constraintTop_toBottomOf="@id/detail_hint_history"/>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

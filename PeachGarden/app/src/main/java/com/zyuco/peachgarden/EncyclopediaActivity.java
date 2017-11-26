@@ -40,7 +40,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 YoYo.with(Techniques.Pulse).duration(200).playOn(view);
-                Intent intent = new Intent(EncyclopediaActivity.this, AddActivity.class);
+                Intent intent = new Intent(EncyclopediaActivity.this, ModifyActivity.class);
                 EncyclopediaActivity.this.startActivity(intent);
             }
         });

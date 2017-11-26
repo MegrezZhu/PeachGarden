@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 YoYo.with(Techniques.Pulse).duration(200).playOn(view);
                 Log.i(TAG, "add button clicked");
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                Intent intent = new Intent(MainActivity.this, ModifyActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });
