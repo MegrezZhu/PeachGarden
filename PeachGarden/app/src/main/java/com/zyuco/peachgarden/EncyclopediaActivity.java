@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -18,11 +19,12 @@ import com.zyuco.peachgarden.library.DbReader;
 import com.zyuco.peachgarden.library.ViewHolder;
 import com.zyuco.peachgarden.model.Character;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EncyclopediaActivity extends AppCompatActivity {
     private List<Character> list;
+    private List<Character> copy_list = new ArrayList<>();
     private CommonAdapter<Character> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,30 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 EncyclopediaActivity.this.startActivity(intent);
             }
         });
+
+        findViewById(R.id.search_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText editText = findViewById(R.id.search_input);
+                String key = editText.getText().toString();
+                if (!key.equals("")) {
+                    editText.setText("");
+                    List<Character> new_list = DbReader.getInstance(EncyclopediaActivity.this).getSearchCharacters(key);
+                    list.clear();
+                    if (new_list != null) {
+                        findViewById(R.id.search_nores).setVisibility(View.INVISIBLE);
+                        list.addAll(DbReader.getInstance(EncyclopediaActivity.this).getSearchCharacters(key));
+                    } else {
+                        findViewById(R.id.search_nores).setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    list.clear();
+                    findViewById(R.id.search_nores).setVisibility(View.INVISIBLE);
+                    list.addAll(copy_list);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void setStatusBarColor() {
@@ -52,12 +78,12 @@ public class EncyclopediaActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        long start = new Date().getTime();
         list = DbReader.getInstance(this).getAllCharacters();
+        copy_list.addAll(list);
         adapter = new CommonAdapter<Character>(this, R.layout.character_item, list) {
             @Override
             public void convert(ViewHolder holder, Character data) {
-                boolean hasUnlock = DbReader.getInstance(EncyclopediaActivity.this).checkIfOwned(data);
+                boolean unlocked = DbReader.getInstance(EncyclopediaActivity.this).checkIfOwned(data);
                 TextView name = holder.getView(R.id.name);
                 name.setText(data.name);
                 TextView belong = holder.getView(R.id.belong);
@@ -65,10 +91,10 @@ public class EncyclopediaActivity extends AppCompatActivity {
                 TextView description = holder.getView(R.id.abstract_description);
                 description.setText("\t\t\t\t" + data.abstractDescription);
                 ConstraintLayout layout = holder.getView(R.id.list_item_wrapper);
-                if (!hasUnlock) {
-                    layout.setBackgroundResource(R.mipmap.lock_item_background);
-                    layout.setClickable(false);
-                }
+
+                holder.getView(R.id.locked_mask).setVisibility(unlocked ? View.INVISIBLE : View.VISIBLE);
+                holder.getView(R.id.locked_mask_text).setVisibility(unlocked ? View.INVISIBLE : View.VISIBLE);
+                layout.setClickable(unlocked);
             }
         };
 

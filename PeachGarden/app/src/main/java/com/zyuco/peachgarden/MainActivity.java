@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -75,16 +76,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.main_page).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(MainActivity.class);
-            }
-        });
         findViewById(R.id.wiki_page).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: goto wiki page
                 startActivity(EncyclopediaActivity.class);
             }
         });
@@ -98,6 +92,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(AboutActivity.class);
+            }
+        });
+
+        findViewById(R.id.main_search_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText editText = findViewById(R.id.main_search_input);
+                String key = editText.getText().toString();
+                editText.setText("");
+                List<Character> new_list;
+                new_list = DbReader.getInstance(MainActivity.this).getSearchOwnCharacters(key);
+                list.clear();
+                if (new_list == null) {
+                    findViewById(R.id.main_search_nores).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.main_search_nores).setVisibility(View.INVISIBLE);
+                    list.addAll(new_list);
+                }
+                adapter.notifyDataSetChanged();
             }
         });
     }

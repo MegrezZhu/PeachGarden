@@ -20,6 +20,33 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="120dp"/>
 
+    <View
+        android:id="@+id/locked_mask"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.1"
+        android:background="#000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/border"
+        app:layout_constraintLeft_toLeftOf="@id/border"
+        app:layout_constraintRight_toRightOf="@id/border"
+        app:layout_constraintTop_toTopOf="@id/border"/>
+
+    <TextView
+        android:id="@+id/locked_mask_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/locked"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="90sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/border"
+        app:layout_constraintLeft_toLeftOf="@id/border"
+        app:layout_constraintRight_toRightOf="@id/border"
+        app:layout_constraintTop_toTopOf="@id/border"/>
+
 
     <ImageView
         android:id="@+id/border"
