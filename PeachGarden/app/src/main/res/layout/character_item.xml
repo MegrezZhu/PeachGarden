@@ -14,7 +14,7 @@
     android:focusable="true">
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/right_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -78,7 +78,7 @@
         android:textColor="#000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/name"
-        app:layout_constraintRight_toLeftOf="@id/guideline"/>
+        app:layout_constraintRight_toLeftOf="@id/right_margin"/>
 
     <TextView
         android:id="@+id/belong"
@@ -88,7 +88,7 @@
         android:textColor="#000"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@id/name"
-        app:layout_constraintLeft_toLeftOf="@id/guideline"/>
+        app:layout_constraintLeft_toLeftOf="@id/right_margin"/>
 
     <TextView
         android:id="@+id/abstract_description"

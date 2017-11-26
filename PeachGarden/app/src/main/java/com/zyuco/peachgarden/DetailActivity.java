@@ -41,13 +41,13 @@ public class DetailActivity extends AppCompatActivity {
     }
     protected void render() {
         data = (Character) getIntent().getSerializableExtra("character");
-        avatar = findViewById(R.id.detail_avatar);
-        name = findViewById(R.id.detail_name);
-        belong = findViewById(R.id.detail_belong);
-        origin = findViewById(R.id.detail_origin);
-        live = findViewById(R.id.detail_live);
-        _abstract = findViewById(R.id.detail_abstract);
-        description = findViewById(R.id.detail_desription);
+        avatar = findViewById(R.id.edit_avatar);
+        name = findViewById(R.id.edit_name);
+        belong = findViewById(R.id.edit_hint_belong);
+        origin = findViewById(R.id.edit_origin);
+        live = findViewById(R.id.edit_live);
+        _abstract = findViewById(R.id.edit_abstract);
+        description = findViewById(R.id.edit_history);
         // 名字
         StringBuilder text = new StringBuilder();
         for (int i = 0; i < data.name.length(); i++) {
@@ -87,7 +87,7 @@ public class DetailActivity extends AppCompatActivity {
         new Tools.LoadImagesTask(avatar).execute(data.avatar);
 
         // 背景
-        ScrollView scrollView = findViewById(R.id.detail_scroll_view);
+        ScrollView scrollView = findViewById(R.id.edit_scroll_view);
         scrollView.setBackgroundResource(data.gender == 1 ? R.mipmap.detail_man_bg : R.mipmap.detail_woman_bg);
     }
 

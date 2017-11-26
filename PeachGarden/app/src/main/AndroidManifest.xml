@@ -27,7 +27,6 @@
         <activity android:name=".UnlockSuccessActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".ModifyActivity" />
-        <activity android:name=".AddActivity" />
         <activity android:name=".EncyclopediaActivity"></activity>
     </application>
 
