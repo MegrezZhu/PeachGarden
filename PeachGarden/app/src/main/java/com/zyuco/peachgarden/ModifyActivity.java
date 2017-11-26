@@ -176,6 +176,9 @@ public class ModifyActivity extends AppCompatActivity {
                     Intent broadcast = new Intent(MainActivity.NOTIFY_ITEMS_MODIFY);
                     broadcast.putExtra("characters", (ArrayList<Character>) res);
                     sendBroadcast(broadcast);
+                    Intent mIntent = new Intent();
+                    mIntent.putExtra("character", ch);
+                    setResult(0, mIntent);
                     ModifyActivity.this.finish();
                 }
             }
