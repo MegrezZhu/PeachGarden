@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:id="@+id/detail_scroll_view"
+    android:id="@+id/edit_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/detail_man_bg"
@@ -13,32 +13,8 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         tools:context="com.zyuco.peachgarden.DetailActivity">
-        <android.support.constraint.Guideline
-            android:id="@+id/middle_guideline"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp"
-            />
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="20dp"
-            />
-        <ImageButton
-            android:id="@+id/back"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/back"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
         <ImageView
-            android:id="@+id/detail_avatarBg"
+            android:id="@+id/edit_avatar_background"
             android:layout_width="170dp"
             android:layout_height="150dp"
             android:layout_marginTop="70dp"
@@ -48,179 +24,198 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/detail_avatar"
+            android:id="@+id/edit_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="36dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detail_avatarBg"/>
+            app:layout_constraintTop_toTopOf="@id/edit_avatar_background"/>
 
-        <EditText
-            android:id="@+id/detail_name"
+        <TextView
+            android:id="@+id/edit_hint_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/hint_name"
+            android:textSize="20sp"
+            android:textColor="#000"
             android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/edit_name"
+            app:layout_constraintTop_toBottomOf="@id/edit_avatar_background"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="100dp"
             android:textColor="#000"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:text=""
-            android:theme="@style/MyEditText"
+            android:textSize="20sp"
             android:maxLength="10"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edit_hint_name"
+            app:layout_constraintBottom_toBottomOf="@id/edit_hint_name"
+            app:layout_constraintLeft_toRightOf="@id/edit_hint_name"
             app:layout_constraintRight_toRightOf="parent"
-            android:textCursorDrawable="@null"
-            app:layout_constraintTop_toBottomOf="@id/detail_avatarBg"/>
+            />
 
         <TextView
-            android:id="@+id/detail_belong"
+            android:id="@+id/edit_hint_belong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="归属势力："
+            android:layout_marginStart="20dp"
+            android:text="@string/hint_belong"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="20dp"
-            app:layout_constraintTop_toBottomOf="@id/detail_name"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_name"/>
+
         <EditText
-            android:id="@+id/detail_belong_input"
+            android:id="@+id/edit_belong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text=""
-            android:theme="@style/MyEditText"
-            android:textCursorDrawable="@null"
-            android:maxLength="2"
-            app:layout_constraintLeft_toRightOf="@+id/detail_belong"
-            app:layout_constraintTop_toBottomOf="@id/detail_name"/>
+            android:minWidth="40dp"
+            app:layout_constraintTop_toTopOf="@id/edit_hint_belong"
+            app:layout_constraintBottom_toBottomOf="@id/edit_hint_belong"
+            app:layout_constraintLeft_toRightOf="@id/edit_hint_belong"
+            />
+
         <TextView
-            android:id="@+id/gender"
+            android:id="@+id/edit_hint_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="性别："
+            android:text="@string/hint_gender"
+            app:layout_constraintRight_toLeftOf="@id/edit_gender"
+            app:layout_constraintTop_toTopOf="@id/edit_gender"
+            app:layout_constraintBottom_toBottomOf="@id/edit_gender"
+            />
+
+        <RadioGroup
+            android:id="@+id/edit_gender"
+            android:checkedButton="@id/edit_gender_male"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/edit_hint_belong"
+            app:layout_constraintBottom_toBottomOf="@id/edit_hint_belong"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="70dp"
-            app:layout_constraintTop_toBottomOf="@id/detail_name"/>
-        <EditText
-            android:id="@+id/gender_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="#000"
-            android:textSize="20sp"
-            android:text=""
-            android:theme="@style/MyEditText"
-            android:maxLength="1"
-            app:layout_constraintLeft_toRightOf="@+id/gender"
-            android:textCursorDrawable="@null"
-            app:layout_constraintTop_toBottomOf="@id/detail_name"/>
+            android:layout_marginEnd="20dp"
+            >
+            <RadioButton
+                android:id="@+id/edit_gender_male"
+                android:text="@string/gender_male"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/edit_gender_female"
+                android:text="@string/gender_female"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
         <TextView
-            android:id="@+id/detail_origin"
+            android:id="@+id/edit_origin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="籍贯："
+            android:text="@string/hint_origin"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_belong"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_hint_belong"/>
         <EditText
-            android:id="@+id/detail_origin_input"
+            android:id="@+id/edit_origin_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text=""
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:theme="@style/MyEditText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textCursorDrawable="@null"
-            app:layout_constraintTop_toBottomOf="@id/detail_origin"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_origin"/>
 
         <TextView
-            android:id="@+id/detail_live"
+            android:id="@+id/edit_live"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
+            android:layout_marginStart="20dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="生卒："
-            app:layout_constraintLeft_toRightOf="@+id/middle_guideline"
-            app:layout_constraintTop_toBottomOf="@id/detail_origin_input"/>
+            android:text="@string/hint_live"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_origin_input"/>
         <EditText
-            android:id="@+id/from"
-            android:layout_width="wrap_content"
+            android:id="@+id/edit_live_from"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text=""
-            android:theme="@style/MyEditText"
             android:maxLength="4"
             android:inputType="number"
-            app:layout_constraintLeft_toRightOf="@+id/detail_live"
-            android:textCursorDrawable="@null"
-            app:layout_constraintTop_toBottomOf="@id/detail_origin_input"/>
+            app:layout_constraintLeft_toRightOf="@+id/edit_live"
+            app:layout_constraintTop_toBottomOf="@id/edit_origin_input"/>
         <TextView
-            android:id="@+id/year"
+            android:id="@+id/edit_from_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="年-"
-            app:layout_constraintLeft_toRightOf="@+id/from"
-            app:layout_constraintTop_toBottomOf="@id/detail_origin_input"/>
+            android:text="@string/hint_after_from_year"
+            app:layout_constraintLeft_toRightOf="@+id/edit_live_from"
+            app:layout_constraintTop_toBottomOf="@id/edit_origin_input"/>
         <EditText
-            android:id="@+id/to"
-            android:layout_width="wrap_content"
+            android:id="@+id/edit_live_to"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text=""
             android:theme="@style/MyEditText"
             android:maxLength="4"
             android:inputType="number"
-            app:layout_constraintLeft_toRightOf="@+id/year"
+            app:layout_constraintLeft_toRightOf="@+id/edit_from_year"
             android:textCursorDrawable="@null"
-            app:layout_constraintTop_toBottomOf="@id/detail_origin_input"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_origin_input"/>
         <TextView
-            android:id="@+id/second_year"
+            android:id="@+id/edit_to_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="年"
-            app:layout_constraintLeft_toRightOf="@+id/to"
-            app:layout_constraintTop_toBottomOf="@id/detail_origin_input"/>
+            android:text="@string/hint_after_to_year"
+            app:layout_constraintLeft_toRightOf="@+id/edit_live_to"
+            app:layout_constraintTop_toBottomOf="@id/edit_origin_input"/>
 
         <TextView
-            android:id="@+id/abstractLabel"
+            android:id="@+id/edit_hint_abstract"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="40dp"
-            android:text="人物简介"
+            android:text="@string/hint_abstract"
             android:textColor="#000"
             android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_live"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_live"/>
 
         <EditText
-            android:id="@+id/detail_abstract"
+            android:id="@+id/edit_abstract"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -231,25 +226,24 @@
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:theme="@style/MyEditText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/abstractLabel"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_hint_abstract"/>
         <TextView
-            android:id="@+id/historyLabel"
+            android:id="@+id/edit_hint_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="40dp"
-            android:text="历史记载"
+            android:text="@string/hint_history"
             android:textColor="#000"
             android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_abstract"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_abstract"/>
 
         <EditText
-            android:id="@+id/detail_desription"
+            android:id="@+id/edit_history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -260,12 +254,11 @@
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:theme="@style/MyEditText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/historyLabel"/>
+            app:layout_constraintTop_toBottomOf="@id/edit_hint_history"/>
         <ImageButton
-            android:id="@+id/save"
+            android:id="@+id/edit_save"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -273,16 +266,6 @@
             android:src="@mipmap/save"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_desription"/>
-        <ImageView
-            android:id="@+id/detail_bg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/detail_man_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/edit_history"/>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -27,10 +27,8 @@
         <activity android:name=".UnlockSuccessActivity"/>
         <activity android:name=".AboutActivity"/>
         <activity android:name=".ModifyActivity"/>
-        <activity android:name=".AddActivity"/>
         <activity android:name=".EncyclopediaActivity"/>
-        <activity android:name=".AvatarSelectActivity">
-        </activity>
+        <activity android:name=".AvatarSelectActivity"/>
     </application>
 
 </manifest>

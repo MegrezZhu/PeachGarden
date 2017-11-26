@@ -43,11 +43,12 @@ public class DetailActivity extends AppCompatActivity {
     protected void render(Character data) {
         avatar = findViewById(R.id.detail_avatar);
         name = findViewById(R.id.detail_name);
-        belong = findViewById(R.id.detail_belong);
+        belong = findViewById(R.id.detail_hint_belong);
         origin = findViewById(R.id.detail_origin);
         live = findViewById(R.id.detail_live);
         _abstract = findViewById(R.id.detail_abstract);
-        description = findViewById(R.id.detail_desription);
+        description = findViewById(R.id.detail_history);
+
         // 名字
         StringBuilder text = new StringBuilder();
         for (int i = 0; i < data.name.length(); i++) {
@@ -84,11 +85,13 @@ public class DetailActivity extends AppCompatActivity {
         text.setLength(0);
 
         // 头像
-        if (data.avatar.length() == 1) {
-            // a stupid preset avatar
-            avatar.setImageResource(getResources().getIdentifier("avatar_" + data.avatar, "mipmap", getPackageName()));
-        } else {
-            new Tools.LoadImagesTask(avatar).execute(data.avatar);
+        if (data.avatar != null) {
+            if (data.avatar.length() == 1) {
+                // a stupid preset avatar
+                avatar.setImageResource(getResources().getIdentifier("avatar_" + data.avatar, "mipmap", getPackageName()));
+            } else {
+                new Tools.LoadImagesTask(avatar).execute(data.avatar);
+            }
         }
 
         // 背景

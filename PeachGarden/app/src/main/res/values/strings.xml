@@ -29,4 +29,15 @@
     <string name="unlocking_poem_4">今逢四海为家日，故垒萧萧芦荻秋</string>
     <string name="new_unlock">解锁了${n}条新的词条：</string>
     <string name="locked">未解锁</string>
+    <string name="hint_name">姓名：</string>
+    <string name="hint_belong">归属势力：</string>
+    <string name="hint_gender">性别：</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="hint_origin">籍贯：</string>
+    <string name="hint_live">生卒：</string>
+    <string name="hint_after_from_year">年至</string>
+    <string name="hint_after_to_year">年</string>
+    <string name="hint_abstract">人物简介</string>
+    <string name="hint_history">历史记载</string>
 </resources>
