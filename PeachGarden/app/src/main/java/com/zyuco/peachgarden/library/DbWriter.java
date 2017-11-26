@@ -45,7 +45,7 @@ public class DbWriter {
         db.delete(DbHelper.TABLE_OWN, Character._ID + " = ?", new String[]{String.valueOf(ch._id)});
     }
     public void deleteCharacter(Character ch) {
-        db.delete(DbHelper.TABLE_CHARACTER, Character._ID + " = ?", new String[]{String.valueOf(ch._id)});
+        db.delete(DbHelper.TABLE_CHARACTER , Character._ID + " = ?", new String[]{String.valueOf(ch._id)});
     }
 
     public static synchronized DbWriter getInstance(Context context) {

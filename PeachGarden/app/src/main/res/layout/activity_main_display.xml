@@ -79,7 +79,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:text="查询"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:background="@drawable/search_shape"
         android:gravity="center"
         android:textColor="#333"
