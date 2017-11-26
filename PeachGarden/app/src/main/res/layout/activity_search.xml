@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zyuco.peachgarden.SearchActivity">
+
+
+
+    <View
+        android:id="@+id/appbar"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#EDEDED"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/search_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:text="@string/search_all"
+        android:textColor="#000"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@id/appbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/appbar"/>
+
+    <EditText
+        android:id="@+id/search_input"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+
+        android:hint="查询"
+        android:maxLines="1"
+        android:lines="1"
+        android:background="@drawable/search_shape"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/search_button"/>
+
+    <Button
+        android:id="@+id/search_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="搜索"
+        android:textSize="18dp"
+        android:paddingLeft="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintLeft_toRightOf="@id/search_input"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/character_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:focusableInTouchMode="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_input"/>
+
+    <TextView
+        android:id="@+id/search_nores"
+        android:text="什么！居然有不在词典的人物"
+        android:textSize="20dp"
+        android:textColor="#333"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

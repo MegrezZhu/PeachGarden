@@ -14,7 +14,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -95,22 +94,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.main_search_button).setOnClickListener(new View.OnClickListener() {
+//        findViewById(R.id.main_search_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                EditText editText = findViewById(R.id.main_search_input);
+//                String key = editText.getText().toString();
+//                editText.setText("");
+//                List<Character> new_list;
+//                new_list = DbReader.getInstance(MainActivity.this).getSearchOwnCharacters(key);
+//                list.clear();
+//                if (new_list == null) {
+//                    findViewById(R.id.main_search_nores).setVisibility(View.VISIBLE);
+//                } else {
+//                    findViewById(R.id.main_search_nores).setVisibility(View.INVISIBLE);
+//                    list.addAll(new_list);
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+
+        findViewById(R.id.main_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText = findViewById(R.id.main_search_input);
-                String key = editText.getText().toString();
-                editText.setText("");
-                List<Character> new_list;
-                new_list = DbReader.getInstance(MainActivity.this).getSearchOwnCharacters(key);
-                list.clear();
-                if (new_list == null) {
-                    findViewById(R.id.main_search_nores).setVisibility(View.VISIBLE);
-                } else {
-                    findViewById(R.id.main_search_nores).setVisibility(View.INVISIBLE);
-                    list.addAll(new_list);
-                }
-                adapter.notifyDataSetChanged();
+                Intent intent = new Intent();
+                intent.putExtra("type", "own");
+                intent.setClass(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
             }
         });
     }
