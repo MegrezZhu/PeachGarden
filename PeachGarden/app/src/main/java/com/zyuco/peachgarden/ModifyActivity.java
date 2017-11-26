@@ -3,6 +3,7 @@ package com.zyuco.peachgarden;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -46,6 +47,7 @@ public class ModifyActivity extends AppCompatActivity {
         render();
         addBackClickEventListener();
         addSaveClickEventListener();
+        addAvatarSelectionListener();
     }
 
     protected void render() {
@@ -95,7 +97,12 @@ public class ModifyActivity extends AppCompatActivity {
         text.setLength(0);
 
         // 头像
-        new Tools.LoadImagesTask(avatar).execute(data.avatar);
+        if (data.avatar.length() == 1) {
+            // a stupid preset avatar
+            avatar.setImageResource(getResources().getIdentifier("avatar_" + data.avatar, "mipmap", getPackageName()));
+        } else {
+            new Tools.LoadImagesTask(avatar).execute(data.avatar);
+        }
 
         //性别
         text.append(data.gender == 1 ? "男" : "女");
@@ -106,11 +113,13 @@ public class ModifyActivity extends AppCompatActivity {
         ScrollView scrollView = findViewById(R.id.detail_scroll_view);
         scrollView.setBackgroundResource(data.gender == 1 ? R.mipmap.detail_man_bg : R.mipmap.detail_woman_bg);
     }
+
     private void setStatusBarColor() {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(0xF5F5F5);
     }
+
     protected void addBackClickEventListener() {
         ImageButton back = (ImageButton) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -127,27 +136,47 @@ public class ModifyActivity extends AppCompatActivity {
             }
         });
     }
-    public boolean isNumeric(String str){
+
+    public boolean isNumeric(String str) {
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher isNum = pattern.matcher(str);
-        if( !isNum.matches() ){
+        if (!isNum.matches()) {
             return false;
         }
         return true;
     }
-    protected void addSaveClickEventListener(){
+
+    private void addAvatarSelectionListener() {
+        findViewById(R.id.detail_avatar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ModifyActivity.this, AvatarSelectActivity.class);
+                startActivityForResult(intent, AvatarSelectActivity.SELECT_AVARTAR);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (intent == null) return;
+        Log.i("PeachGarden:", String.format("onActivityResult: avatar %d", intent.getIntExtra("avatar", -1)));
+        data.avatar = String.valueOf(intent.getIntExtra("avatar", 1));
+        render();
+    }
+
+    protected void addSaveClickEventListener() {
         ImageButton save = (ImageButton) findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Todo: modify db and return mainpage
                 if (name.getText().toString().trim().equals("") || origin.getText().toString().trim().equals("")
-                        ||gender.getText().toString().trim().equals("")||belong.getText().toString().trim().equals("")
-                        ||live_from.getText().toString().trim().equals("")||live_to.getText().toString().trim().equals("")
-                        ||description.getText().toString().trim().equals("")||_abstract.getText().toString().trim().equals("")){
+                    || gender.getText().toString().trim().equals("") || belong.getText().toString().trim().equals("")
+                    || live_from.getText().toString().trim().equals("") || live_to.getText().toString().trim().equals("")
+                    || description.getText().toString().trim().equals("") || _abstract.getText().toString().trim().equals("")) {
                     Toast.makeText(ModifyActivity.this, "所有输入不能为空", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Character ch = new Character();
                     ch._id = data._id;
                     ch.name = name.getText().toString();
@@ -156,16 +185,14 @@ public class ModifyActivity extends AppCompatActivity {
                     ch.abstractDescription = _abstract.getText().toString();
                     ch.description = description.getText().toString();
                     ch.gender = gender.getText().toString() == "男" ? 1 : 0;
-                    if (isNumeric(live_from.getText().toString())){
+                    if (isNumeric(live_from.getText().toString())) {
                         ch.from = Integer.parseInt(live_from.getText().toString());
-                    }
-                    else{
+                    } else {
                         ch.from = 0;
                     }
-                    if (isNumeric(live_to.getText().toString())){
+                    if (isNumeric(live_to.getText().toString())) {
                         ch.to = Integer.parseInt(live_to.getText().toString());
-                    }
-                    else{
+                    } else {
                         ch.to = 0;
                     }
                     ch.origin = origin.getText().toString();
