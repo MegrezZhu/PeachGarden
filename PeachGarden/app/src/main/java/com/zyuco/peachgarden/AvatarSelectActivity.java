@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class AvatarSelectActivity extends AppCompatActivity {
     public static final int SELECT_AVARTAR = 0x233;
@@ -16,6 +18,7 @@ public class AvatarSelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_avatar_select);
 
         setListeners();
+        setStatusBarColor();
     }
 
     private void setListeners() {
@@ -38,5 +41,11 @@ public class AvatarSelectActivity extends AppCompatActivity {
         intent.putExtra("avatar", avatarId);
         setResult(SELECT_AVARTAR, intent);
         finish(); // close
+    }
+
+    private void setStatusBarColor() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(0xF5F5F5);
     }
 }

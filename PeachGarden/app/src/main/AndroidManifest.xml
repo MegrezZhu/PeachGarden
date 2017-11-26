@@ -29,6 +29,7 @@
         <activity android:name=".ModifyActivity"/>
         <activity android:name=".EncyclopediaActivity"/>
         <activity android:name=".AvatarSelectActivity"/>
+        <activity android:name=".SearchActivity"/>
     </application>
 
 </manifest>
