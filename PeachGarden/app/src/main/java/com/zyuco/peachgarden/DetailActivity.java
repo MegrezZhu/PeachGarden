@@ -131,7 +131,7 @@ public class DetailActivity extends AppCompatActivity {
                         } else if (menuItem.getItemId() == R.id.edit) {
                             Intent intent = new Intent(DetailActivity.this, ModifyActivity.class);
                             intent.putExtra("character",data);
-                            DetailActivity.this.startActivity(intent);
+                            DetailActivity.this.startActivityForResult(intent, 0);
                         }
                         return false;
                     }
@@ -150,6 +150,47 @@ public class DetailActivity extends AppCompatActivity {
                 DetailActivity.this.finish();
             }
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        Character data = (Character)intent.getSerializableExtra("character");
+        // 名字
+        StringBuilder text = new StringBuilder();
+        for (int i = 0; i < data.name.length(); i++) {
+            if (i != 0) {
+                text.append(data.gender == 1 ? '♂' : '♀');
+            }
+            text.append(data.name.charAt(i));
+        }
+
+        name.setText(text.toString());
+        text.setLength(0);
+
+        // 归属势力
+        text.append("归属势力:").append(data.belong != null ? data.belong : "???");
+        belong.setText(text.toString());
+        text.setLength(0);
+
+        // 籍贯
+        text.append("籍贯:").append(data.origin != null ? data.origin : "???");
+        origin.setText(text.toString());
+        text.setLength(0);
+
+        // 生卒
+        text.append("生卒:").append(data.from == 0 ? "?" : data.from + "年").append('-').append(data.to == 0 ? "?" : data.to + "年");
+        live.setText(text.toString());
+        text.setLength(0);
+
+        // 人物简介
+        _abstract.setText(text.append("\t\t\t\t").append(data.abstractDescription).toString());
+        text.setLength(0);
+
+        // 历史记载
+        description.setText(text.append("\t\t\t\t").append(data.description).toString());
+        text.setLength(0);
+
+        // 头像
+        new Tools.LoadImagesTask(avatar).execute(data.avatar);
     }
 
 }
