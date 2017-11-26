@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -46,27 +45,37 @@ public class EncyclopediaActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.search_button).setOnClickListener(new View.OnClickListener() {
+//        findViewById(R.id.search_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                EditText editText = findViewById(R.id.search_input);
+//                String key = editText.getText().toString();
+//                if (!key.equals("")) {
+//                    editText.setText("");
+//                    List<Character> new_list = DbReader.getInstance(EncyclopediaActivity.this).getSearchCharacters(key);
+//                    list.clear();
+//                    if (new_list != null) {
+//                        findViewById(R.id.search_nores).setVisibility(View.INVISIBLE);
+//                        list.addAll(DbReader.getInstance(EncyclopediaActivity.this).getSearchCharacters(key));
+//                    } else {
+//                        findViewById(R.id.search_nores).setVisibility(View.VISIBLE);
+//                    }
+//                } else {
+//                    list.clear();
+//                    findViewById(R.id.search_nores).setVisibility(View.INVISIBLE);
+//                    list.addAll(copy_list);
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+
+        findViewById(R.id.wiki_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText = findViewById(R.id.search_input);
-                String key = editText.getText().toString();
-                if (!key.equals("")) {
-                    editText.setText("");
-                    List<Character> new_list = DbReader.getInstance(EncyclopediaActivity.this).getSearchCharacters(key);
-                    list.clear();
-                    if (new_list != null) {
-                        findViewById(R.id.search_nores).setVisibility(View.INVISIBLE);
-                        list.addAll(DbReader.getInstance(EncyclopediaActivity.this).getSearchCharacters(key));
-                    } else {
-                        findViewById(R.id.search_nores).setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    list.clear();
-                    findViewById(R.id.search_nores).setVisibility(View.INVISIBLE);
-                    list.addAll(copy_list);
-                }
-                adapter.notifyDataSetChanged();
+                Intent intent = new Intent();
+                intent.putExtra("type", "all");
+                intent.setClass(EncyclopediaActivity.this, SearchActivity.class);
+                startActivity(intent);
             }
         });
     }
