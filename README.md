@@ -1,5 +1,3 @@
 # PeachGarden
-Midterm project on Android Course
+![](./Assets/Splash.jpg)
 
----
-In progress...
