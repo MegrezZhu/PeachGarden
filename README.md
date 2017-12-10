@@ -1,3 +1,3 @@
 # PeachGarden
-![](Assets/Splash.jpg?raw=true)
+![](Assets/splash.jpg)
 
